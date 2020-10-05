@@ -15,6 +15,7 @@
     <!--HOME-->
     <string name="judulHome">Pilih Motor</string>
     <string name="popular">Popular</string>
+    <string name="explore">Explore More</string>
 
 
 </resources>
