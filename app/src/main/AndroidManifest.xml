@@ -3,45 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.stevenkristian.tubes">
 
-<uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-<uses-feature android:name="android.hardware.type.watch" />
+    <uses-feature android:name="android.hardware.type.watch" />
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <activity android:name=".Home" />
-    <activity android:name=".konfirmasi" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".profile"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".konfirmasi" />
 
-    <uses-library
-        android:name="com.google.android.wearable"
-        android:required="false" />
-    <!--
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="false" />
+        <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
-    <meta-data
-        android:name="com.google.android.wearable.standalone"
-        android:value="true" />
-    <activity android:name=".SignUp" />
-    <activity android:name=".Login" />
-    <activity android:name=".Dashboard" />
-    <activity android:name=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".Login" />
+        <activity android:name=".Dashboard" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <meta-data
-        android:name="preloaded_fonts"
-        android:resource="@array/preloaded_fonts" />
-</application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
 
 </manifest>
-
