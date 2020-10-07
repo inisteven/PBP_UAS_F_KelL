@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:text="UPDATE"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#000">
+            android:backgroundTint="#000"/>
 
 
 
