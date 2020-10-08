@@ -2,8 +2,8 @@
 <layout>
     <data>
         <variable
-            name="motor"
-            type="com.stevenkristian.tubes" />
+            name="Motor"
+            type="com.stevenkristian.tubes.Motor" />
     </data>
     <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +27,7 @@
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:loadImage="@{mhs.imgURL}">
+                    />
                 </ImageView>
             </LinearLayout>
             <LinearLayout
@@ -42,15 +42,15 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="NPM"
+                        android:text="Plat"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvNpm"
+                        android:id="@+id/tvPlat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{mhs.npm}"
+                        android:text="@{Motor.plat}"
                         android:textSize="12dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -60,15 +60,15 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="Nama"
+                        android:text="Merk"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvNama"
+                        android:id="@+id/tvMerk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{mhs.nama}"
+                        android:text="@{Motor.merk}"
                         android:textSize="12dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -78,15 +78,15 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="Fakultas"
+                        android:text="Warna"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvFakultas"
+                        android:id="@+id/tvWarna"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{mhs.fakultas}"
+                        android:text="@{Motor.warna}"
                         android:textSize="12dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -96,15 +96,15 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="Jurusan"
+                        android:text="Tahun"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvJurusan"
+                        android:id="@+id/tvTahun"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{mhs.jurusan}"
+                        android:text="@{Motor.tahun}"
                         android:textSize="12dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -114,34 +114,33 @@
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:text="IPK"
+                        android:text="Status"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvIpk"
+                        android:id="@+id/tvStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{mhs.stringIpk}"
+                        android:text="@{Motor.status}"
                         android:textSize="12dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="60dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hobi"
-                        android:textSize="14dp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/tvHobi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@{mhs.hobi}"
-                        android:textSize="12dp"/>
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="Harga"
+                            android:textSize="14dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tvHarga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:text="@{Motor.harga}"
+                            android:textSize="12dp"/>
                 </LinearLayout>
             </LinearLayout>
 
