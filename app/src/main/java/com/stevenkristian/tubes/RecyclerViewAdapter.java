@@ -1,21 +1,21 @@
-package com.stevenkristian.tubes;
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
+//package com.stevenkristian.tubes;
+//
+//import android.content.Context;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ImageView;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import androidx.annotation.NonNull;
+//import androidx.cardview.widget.CardView;
+//import androidx.recyclerview.widget.RecyclerView;
+//
 //import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
-
-import java.util.List;
-
+//
+//import java.util.List;
+//
 //public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
 //
 //    private Context context;
@@ -38,7 +38,7 @@ import java.util.List;
 //    @Override
 //    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 //        Motor mtr = result.get(position);
-//        holder.binding.setMhs(mtr)
+//        holder.binding.setMtr(mtr)
 //    }
 //
 //    @Override

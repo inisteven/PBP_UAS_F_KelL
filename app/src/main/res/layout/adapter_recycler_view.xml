@@ -2,10 +2,10 @@
 <layout>
     <data>
         <variable
-            name="Motor"
+            name="mtr"
             type="com.stevenkristian.tubes.Motor" />
     </data>
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_marginBottom="3dp"
         tools:context=".RecyclerViewAdapter"
-        android:id="@+id/ParentAdapter">
+        android:id="@+id/ParentAdapter"
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,32 +29,16 @@
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    />
+                    android:loadImage="@{mtr.imgURL}">
                 </ImageView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Plat"
-                        android:textSize="14dp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/tvPlat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@{Motor.plat}"
-                        android:textSize="12dp"/>
-                </LinearLayout>
+                <!--merk-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,34 +47,17 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Merk"
-                        android:textSize="14dp"
+                        style="@style/TextAppearance.MaterialComponents.Headline5"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/tvMerk"
+                        android:id="@+id/merk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{Motor.merk}"
-                        android:textSize="12dp"/>
+                        android:text="@{mtr.merk}"
+                        style="@style/TextAppearance.MaterialComponents.Headline4"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Warna"
-                        android:textSize="14dp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/tvWarna"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@{Motor.warna}"
-                        android:textSize="12dp"/>
-                </LinearLayout>
+                <!--Tahun-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,6 +66,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Tahun"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:textSize="14dp"
                         android:textStyle="bold"/>
                     <TextView
@@ -104,48 +74,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:text="@{Motor.tahun}"
+                        android:text="@{mtr.tahun}"
                         android:textSize="12dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Status"
-                        android:textSize="14dp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/tvStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:text="@{Motor.status}"
-                        android:textSize="12dp"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Harga"
-                            android:textSize="14dp"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:id="@+id/tvHarga"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
-                            android:text="@{Motor.harga}"
-                            android:textSize="12dp"/>
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
 
 
