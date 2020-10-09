@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="20dp"
+        android:background="#a3d2ca">
+
+
     <TextView
         android:id="@+id/Judul"
         style="@style/TextAppearance.MaterialComponents.Headline4"
