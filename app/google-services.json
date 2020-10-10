@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "471265327255",
+    "firebase_url": "https://tubes-8f6de.firebaseio.com",
+    "project_id": "tubes-8f6de",
+    "storage_bucket": "tubes-8f6de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471265327255:android:57e2cf300c7a083295d1d2",
+        "android_client_info": {
+          "package_name": "com.stevenkristian.tubes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471265327255-p50ebfvke4hqg27qi07i3vu723b1r57f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stevenkristian.tubes",
+            "certificate_hash": "1d8b6b2a31051ecc476e6b1ee0926c5606e9b581"
+          }
+        },
+        {
+          "client_id": "471265327255-jl8jb807mhmdeoualn7fc7egmqvmuu7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGn0OpAk8YqBqu7LnTPTaOspmeTChek5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471265327255-jl8jb807mhmdeoualn7fc7egmqvmuu7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

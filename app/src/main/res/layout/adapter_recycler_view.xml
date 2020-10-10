@@ -29,7 +29,7 @@
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:loadImage="@{mtr.imgURL}">
+                    android:imageURL="@{mtr.imgURL}">
                 </ImageView>
             </LinearLayout>
 

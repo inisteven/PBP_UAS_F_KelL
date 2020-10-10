@@ -1,10 +1,12 @@
 package com.stevenkristian.tubes;
 
 
+import android.view.View;
+import android.widget.ImageView;
 
-//import androidx.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 
-//import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 
 public class Motor  {
 
@@ -26,62 +28,62 @@ public class Motor  {
         this.imgURL = imgURL;
     }
 
-    public String getmerk()
+    public String getMerk()
     {
         return merk;
     }
 
-    public void setmerk(String merk)
+    public void setMerk(String merk)
     {
         this.merk = merk;
     }
 
-    public String getwarna()
+    public String getWarna()
     {
         return warna;
     }
 
-    public void setwarna(String warna)
+    public void setWarna(String warna)
     {
         this.warna = warna;
     }
 
-    public String getplat()
+    public String getPlat()
     {
         return plat;
     }
 
-    public void setplat(String plat)
+    public void setPlat(String plat)
     {
         this.plat = plat;
     }
 
-    public String gettahun()
+    public String getTahun()
     {
         return tahun;
     }
 
-    public void settahun(String tahun)
+    public void setTahun(String tahun)
     {
         this.tahun = tahun;
     }
 
-    public String getstatus()
+    public String getStatus()
     {
         return status;
     }
 
-    public void setstatus(String status)
+    public void setStatus(String status)
     {
         this.status = status;
     }
 
-    public String getharga()
+    public String getHarga()
     {
         return harga;
     }
 
-    public void setharga(String harga)
+    public void setHarga(String harga)
     {
         this.harga = harga;
     }
@@ -96,11 +98,15 @@ public class Motor  {
         this.imgURL = imgURL;
     }
 
-    //@BindingAdapter("android:loadImplat")
-   // public static void loadImplat (ImplatView imgView, String imgURL){
-     //   Glide.with(imgView)
-      //          .load(imgURL)
-    //            .into(imgView);
-
-   // }
+    @BindingAdapter("android:imageURL")
+    public static void loadImage(View view, String imageURL)
+    {
+        ImageView imageView = (ImageView) view;
+        if (!imageURL.equals("")){
+            Glide.with(view.getContext())
+                    .load(imageURL).into(imageView);
+        }else{
+            imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
+        }
+    }
 }
