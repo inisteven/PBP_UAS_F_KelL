@@ -8,14 +8,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#a3d2ca"
+        android:layout_width="413dp"
+        android:layout_height="163dp"
+        android:background="@drawable/bg_blue_gradient"
         android:padding="20dp">
 
         <TextView
             android:id="@+id/Judul"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
+            style="@style/TextAppearance.MaterialComponents.Headline3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -25,7 +25,7 @@
             android:text="Booking"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="#000000"
+            android:textColor="#FFFF"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -36,9 +36,18 @@
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="272dp">
+        tools:layout_editor_absoluteY="163dp">
+
+        <TextView
+            android:id="@+id/merkMotor"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Merk Motor" />
+
 
         <!-- Fullname-->
         <com.google.android.material.textfield.TextInputLayout
@@ -74,7 +83,6 @@
                 android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
     </LinearLayout>
@@ -128,14 +136,25 @@
             android:text="Hari" />
 
         <!--        TOTAL HARGA-->
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="80dp"
+            android:layout_below="@id/layout_totalHari"
+            android:background="@android:color/darker_gray" />
+
         <TextView
             android:id="@+id/layout_totalHarga"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_totalHari"
+            android:layout_below="@id/divider"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="15dp"
             android:text="Total Harga " />
 
         <TextView
@@ -155,9 +174,11 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#000"
-        android:text="UPDATE"
+        android:text="BOOKING"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 

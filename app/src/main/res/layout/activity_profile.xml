@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:padding="20dp"
-        android:background="#fece2f">
+        android:background="@drawable/bg_blue_gradient">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/fotoProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -56,7 +56,7 @@
             android:layout_height="68dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="#fece2f"
+            app:cardBackgroundColor="#6cd0ff"
             app:cardCornerRadius="60dp"
             app:cardElevation="10dp">
 
