@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="309dp"
         android:adjustViewBounds="true"
-        android:src="" />
+        android:src="@drawable/ic_launcher_foreground" />
 
     <ImageView
         android:id="@+id/btnBack"
