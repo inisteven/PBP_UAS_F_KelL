@@ -50,7 +50,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView npm, nama, fakultas, jurusan, ipk, hobi;
+        private TextView merk,warna,plat,tahun,status,harga;
         private ImageView foto_profil;
         private CardView parent;
         private AdapterRecyclerViewBinding binding;
