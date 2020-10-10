@@ -24,6 +24,7 @@
         android:adjustViewBounds="true"
         android:src="@drawable/ic_launcher_foreground" />
 
+
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="34dp"

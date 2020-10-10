@@ -3,10 +3,9 @@ package com.stevenkristian.tubes;
 
 import android.view.View;
 import android.widget.ImageView;
+import androidx.databinding.BindingAdapter;
 
-//import androidx.databinding.BindingAdapter;
-
-//import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 
 public class Motor  {
 
@@ -98,15 +97,16 @@ public class Motor  {
         this.imgURL = imgURL;
     }
 
-  //  @BindingAdapter("android:imageURL")
-  //  public static void loadImage(View view, String imageURL)
-  //  {
-      //  ImageView imageView = (ImageView) view;
-      //  if (!imageURL.equals("")){
-     //       Glide.with(view.getContext())
-     //               .load(imageURL).into(imageView);
-    //    }else{
-   //         imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
-  //      }
- //   }
-}
+    @BindingAdapter("android:imageURL")
+    public static void loadImage(View view, String imageURL)
+    {
+        ImageView imageView = (ImageView) view;
+        if (!imageURL.equals("")){
+           Glide.with(view.getContext())
+                    .load(imageURL).into(imageView);
+       }else{
+
+        }         imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
+       }
+  }
+
