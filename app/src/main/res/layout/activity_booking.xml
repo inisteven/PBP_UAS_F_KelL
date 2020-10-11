@@ -8,10 +8,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="413dp"
-        android:layout_height="163dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_blue_gradient"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/Judul"
@@ -38,6 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
         tools:layout_editor_absoluteY="163dp">
 
         <TextView
@@ -63,7 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="10dp" />
+                android:drawablePadding="10dp"
+                android:inputType="date"/>
 
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Email-->
@@ -80,7 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:drawablePadding="10dp" />
+                android:drawablePadding="10dp"
+                android:inputType="date"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -4,6 +4,7 @@
     package="com.stevenkristian.tubes">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.type.watch" />
 
@@ -14,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Confirm"></activity>
+        <activity android:name=".Detail"></activity>
+        <activity android:name=".Confirm" />
         <activity android:name=".booking" />
         <activity android:name=".profile" />
         <activity android:name=".Home" />

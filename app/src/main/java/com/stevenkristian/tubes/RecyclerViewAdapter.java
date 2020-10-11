@@ -1,6 +1,7 @@
 package com.stevenkristian.tubes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
 
 import java.util.List;
@@ -23,9 +25,14 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     private Context context;
     private List<Motor>result;
 
-    public RecyclerViewAdapter(Context context, List<Motor> result){
+    public RecyclerViewAdapter(Context context, List<Motor> motor){
         this.context = context;
-        this.result = result;
+        this.result = motor;
+        for(int i=0; i<result.size();i++){
+            if(!result.get(i).getStatus().equalsIgnoreCase("Tersedia")){
+                this.result.remove(motor.get(i));
+            }
+        }
     }
 
     @NonNull
@@ -37,9 +44,34 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         Motor mtr = result.get(position);
         holder.recyclerViewBinding.setMtr(mtr);
+
+        final Intent intent = new Intent(context, Detail.class);
+        final Gson gson = new Gson();
+        final String[] strMtr = new String[1];
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (holder.getAdapterPosition()){
+                    case 0:
+                        strMtr[0] = gson.toJson(result.get(0));
+                        intent.putExtra("objMtr", strMtr[0]);
+                        break;
+                    case 1:
+                        strMtr[0] = gson.toJson(result.get(1));
+                        intent.putExtra("objMtr", strMtr[0]);
+                        break;
+                    case 2:
+                        strMtr[0] = gson.toJson(result.get(2));
+                        intent.putExtra("objMtr", strMtr[0]);
+                        break;
+
+                }
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
