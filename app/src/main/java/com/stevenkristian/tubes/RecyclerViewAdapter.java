@@ -31,8 +31,6 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         AdapterRecyclerViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.adapter_recycler_view,parent,false);
                 //AdapterRecyclerViewBinding.inflate(layoutInflater, parent, false);
         return new MyViewHolder(binding);
@@ -41,27 +39,27 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Motor mtr = result.get(position);
-        holder.binding.setMtr(mtr);
+        holder.recyclerViewBinding.setMtr(mtr);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return result.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView merk,warna,plat,tahun,status,harga;
         private ImageView foto_profil;
         private CardView parent;
-        private AdapterRecyclerViewBinding binding;
+        AdapterRecyclerViewBinding recyclerViewBinding;
 
 
         public MyViewHolder(@NonNull AdapterRecyclerViewBinding binding){
             super(binding.getRoot());
-            this.binding=binding;
+            recyclerViewBinding = binding;
         }
         public ViewDataBinding getBinding(){
-            return binding;
+            return recyclerViewBinding;
         }
         public void onClick(View view) {
             Toast.makeText(context, "You touch me?", Toast.LENGTH_SHORT).show();

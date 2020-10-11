@@ -87,10 +87,7 @@ public class Motor  {
         this.harga = harga;
     }
 
-    public String getImgURL()
-    {
-        return imgURL;
-    }
+    public String getImgURL() { return imgURL; }
 
     public void setImgURL(String imgURL)
     {
