@@ -6,17 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class profile extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
+    MaterialButton btnSignOut;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        btnSignOut=findViewById(R.id.btnSignOut);
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
@@ -47,5 +54,15 @@ public class profile extends AppCompatActivity {
             }
         });
 
+        //Proses SignOut
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.getInstance().signOut();
+                Intent intent=new Intent(profile.this, MainActivity.class);
+                startActivity(intent);
+            }
+
+        });
     }
 }

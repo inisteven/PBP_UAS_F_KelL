@@ -22,6 +22,11 @@ android {
         }
     }
 
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildFeatures{
         dataBinding true
     }
@@ -46,4 +51,9 @@ dependencies {
 
     implementation "com.google.code.gson:gson:2.8.5"
     implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+
+    //mapbox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.12.0'
 }
