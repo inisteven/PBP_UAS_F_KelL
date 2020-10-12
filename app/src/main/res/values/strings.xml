@@ -11,6 +11,7 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="history">History</string>
+    <string name="store">Store</string>
 
     <!--HOME-->
     <string name="judulHome">Pilih Motor</string>

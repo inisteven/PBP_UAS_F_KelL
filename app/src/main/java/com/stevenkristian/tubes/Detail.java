@@ -1,11 +1,13 @@
 package com.stevenkristian.tubes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ public class Detail extends AppCompatActivity {
     private Motor mtr;
     private TextView merk_tv, warna_tv, plat_tv, tahun_tv, status_tv, harga_tv;
     private Button pilih;
+    private ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +65,14 @@ public class Detail extends AppCompatActivity {
                 }
             }
         });
+
+//        btnBack.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                startActivity(new Intent(getApplicationContext(),Home.class));
+//            }
+//        });
+
+
     }
 }

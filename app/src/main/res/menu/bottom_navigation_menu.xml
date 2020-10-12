@@ -16,4 +16,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_history_24"
         android:title="@string/history"/>
+
+    <item
+        android:id="@+id/store"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_store_24"
+        android:title="@string/store"/>
 </menu>

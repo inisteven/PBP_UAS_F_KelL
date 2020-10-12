@@ -15,7 +15,8 @@
         tools:context=".RecyclerViewAdapter"
         android:id="@+id/ParentAdapter"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Merk"
-                        style="@style/TextAppearance.MaterialComponents.Headline5"
+                        android:textColor="#000"
+                        android:textSize="20dp"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/merk"
@@ -55,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:text="@{mtr.merk}"
-                        style="@style/TextAppearance.MaterialComponents.Headline4"/>
+                        style="@style/TextAppearance.MaterialComponents.Headline6"/>
                 </LinearLayout>
                 <!--Tahun-->
                 <LinearLayout
@@ -75,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:text="@{mtr.tahun}"
-                        android:textSize="12dp"/>
+                        android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
 

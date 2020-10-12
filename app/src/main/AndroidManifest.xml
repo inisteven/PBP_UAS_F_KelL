@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Detail"></activity>
+        <activity android:name=".PopularAdapter"></activity>
+        <activity android:name=".Store" />
+        <activity android:name=".Detail" />
         <activity android:name=".Confirm" />
         <activity android:name=".booking" />
         <activity android:name=".profile" />
@@ -35,7 +37,6 @@
 
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
-        <activity android:name=".Dashboard" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -38,6 +38,10 @@ public class profile extends AppCompatActivity {
 //                        startActivity(new Intent(getApplicationContext(),Histor.class));
 //                        overridePendingTransition(0,0);
 //                        return true;
+                    case R.id.store:
+                        startActivity(new Intent(getApplicationContext(),Store.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }

@@ -68,8 +68,8 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
                         intent.putExtra("objMtr", strMtr[0]);
                         break;
 
+                    context.startActivity(intent);
                 }
-                context.startActivity(intent);
             }
         });
     }
@@ -80,9 +80,6 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView merk,warna,plat,tahun,status,harga;
-        private ImageView foto_profil;
-        private CardView parent;
         AdapterRecyclerViewBinding recyclerViewBinding;
 
 
