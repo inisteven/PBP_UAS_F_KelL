@@ -168,6 +168,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/update_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -175,12 +176,12 @@
             android:text="UPDATE" />
 
         <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSignOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#ED9F9F9F"
-        android:text="SIGN OUT" />
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#ED9F9F9F"
+            android:text="SIGN OUT" />
 
 
     </LinearLayout>
@@ -195,9 +196,6 @@
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
-            app:menu="@menu/bottom_navigation_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:menu="@menu/bottom_navigation_menu"/>
 
 </LinearLayout>
