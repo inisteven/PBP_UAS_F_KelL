@@ -102,8 +102,8 @@ public class Motor  {
            Glide.with(view.getContext())
                     .load(imageURL).into(imageView);
        }else{
-
-        }         imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
+            imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
+        }
        }
   }
 
