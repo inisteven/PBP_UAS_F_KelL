@@ -3,7 +3,7 @@ package com.stevenkristian.tubes;
 import java.util.ArrayList;
 
 public class DaftarPopular {
-    public ArrayList<Motor> POPULAR;
+    public ArrayList POPULAR;
 
     public DaftarPopular(){
         POPULAR = new ArrayList();
