@@ -41,6 +41,7 @@
         tools:layout_editor_absoluteY="422dp" />
 
     <Button
+        android:id="@+id/btn_selesai"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

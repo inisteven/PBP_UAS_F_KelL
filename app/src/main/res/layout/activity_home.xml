@@ -16,7 +16,6 @@
             android:background="@drawable/bg_blue_gradient"
             tools:ignore="MissingConstraints" />
 
-
         <TextView
             android:id="@+id/Judul"
             style="@style/TextAppearance.MaterialComponents.Headline4"
@@ -77,18 +76,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/popular">
 
-            <LinearLayout
-                android:id="@+id/categoriItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:orientation="horizontal"
-                android:paddingRight="24dp">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/categoriItem"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="24dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingRight="24dp">-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_motor_popular"
                     style="@style/Widget.MaterialComponents.CardView"
-                    android:layout_width="3dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="100dp"
                     app:cardElevation="1dp"
@@ -96,7 +95,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/popular_recyler_view" />
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </HorizontalScrollView>
 
@@ -124,6 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/explore">
+
 
             <LinearLayout
                 android:layout_width="match_parent"

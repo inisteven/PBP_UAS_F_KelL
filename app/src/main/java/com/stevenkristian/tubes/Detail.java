@@ -40,6 +40,7 @@ public class Detail extends AppCompatActivity {
         status_tv = findViewById(R.id.isi_status);
         harga_tv = findViewById(R.id.isi_harga);
         pilih = findViewById(R.id.pilih_btn);
+        btnBack = findViewById(R.id.btnBack);
 
         //Set to layout
         Glide.with(getApplicationContext())
@@ -66,12 +67,12 @@ public class Detail extends AppCompatActivity {
             }
         });
 
-//        btnBack.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                startActivity(new Intent(getApplicationContext(),Home.class));
-//            }
-//        });
+        btnBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
+            }
+        });
 
 
     }

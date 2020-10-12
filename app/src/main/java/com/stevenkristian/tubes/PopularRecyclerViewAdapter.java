@@ -13,16 +13,15 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
+import com.stevenkristian.tubes.databinding.PopularRecylerViewBinding;
 
 import java.util.List;
 
-public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
-
+public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<PopularRecyclerViewAdapter.MyViewHolder>{
     private Context context;
-    private List<Motor>result;
+    private List<Motor> result;
 
-    public RecyclerViewAdapter(Context context, List<Motor> motor){
+    public PopularRecyclerViewAdapter(Context context, List<Motor> motor){
         this.context = context;
         this.result = motor;
 //        for(int i=0; i<result.size();i++){
@@ -35,8 +34,8 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AdapterRecyclerViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.adapter_recycler_view,parent,false);
-                //AdapterRecyclerViewBinding.inflate(layoutInflater, parent, false);
+        PopularRecylerViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.popular_recyler_view,parent,false);
+
         return new MyViewHolder(binding);
     }
 
@@ -77,10 +76,10 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        AdapterRecyclerViewBinding recyclerViewBinding;
+        PopularRecylerViewBinding recyclerViewBinding;
 
 
-        public MyViewHolder(@NonNull AdapterRecyclerViewBinding binding){
+        public MyViewHolder(@NonNull PopularRecylerViewBinding binding){
             super(binding.getRoot());
             recyclerViewBinding = binding;
         }
@@ -88,7 +87,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
             return recyclerViewBinding;
         }
         public void onClick(View view) {
-            Toast.makeText(context, "You touch me?", Toast.LENGTH_SHORT).show();
+           Toast.makeText(context, "You touch me?", Toast.LENGTH_SHORT).show();
         }
 
     }

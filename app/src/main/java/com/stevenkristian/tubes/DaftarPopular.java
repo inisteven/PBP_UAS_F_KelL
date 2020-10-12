@@ -3,9 +3,9 @@ package com.stevenkristian.tubes;
 import java.util.ArrayList;
 
 public class DaftarPopular {
-    public ArrayList<Popular> POPULAR;
+    public ArrayList<Motor> POPULAR;
 
-    public DaftarMotor(){
+    public DaftarPopular(){
         POPULAR = new ArrayList();
         POPULAR.add(BEATBIRU);
         POPULAR.add(BEATHITAM);
