@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
-    private ArrayList<Motor> ListMotor, ListPopular;
+    private ArrayList<Motor> ListMotor;
     private RecyclerViewAdapter adapter;
 
     private ActivityHomeBinding homeBinding;
