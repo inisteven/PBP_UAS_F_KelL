@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".Home">
 
 
     <RelativeLayout
@@ -37,8 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Judul"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/search_bg"
             android:iconifiedByDefault="false"
             android:queryHint="Cari Motor"
@@ -70,6 +69,7 @@
         android:layout_below="@+id/popular"
         android:layout_alignParentStart="true"
         android:layout_marginTop="8dp"
+        android:baselineAligned="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,10 +102,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explore">
@@ -114,25 +114,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:fadeScrollbars="false"
+            android:orientation="vertical"
             android:scrollbars="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_motor"
+                style="@style/Widget.MaterialComponents.CardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.CardView"
-                android:paddingBottom="0dp"
-                app:cardElevation="1dp"
-                android:scrollbars="vertical"
                 android:fadeScrollbars="false"
+                android:paddingBottom="0dp"
+                android:scrollbars="vertical"
+                app:cardElevation="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/adapter_recycler_view"/>
+                tools:listitem="@layout/adapter_recycler_view" />
 
         </LinearLayout>
 
@@ -144,14 +144,11 @@
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
-            app:menu="@menu/bottom_navigation_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
     </RelativeLayout>
-
-
-
 
 
 </LinearLayout>
