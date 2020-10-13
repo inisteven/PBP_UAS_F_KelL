@@ -1,119 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".Home">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/bg_blue_gradient"
-        android:padding="20dp"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/Judul"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="245dp"
-            android:layout_marginTop="25dp"
-            android:lineSpacingExtra="10dp"
-            android:text="@string/judulHome"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="#FFFF"
-            android:textStyle="bold" />
-
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Judul"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/search_bg"
-            android:iconifiedByDefault="false"
-            android:queryHint="Cari Motor"
-            app:layout_constraintTop_toBottomOf="@+id/Judul" />
-
-    </RelativeLayout>
-
-    <!-- Isi Explore More-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="0dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explore">
-
-        <TextView
-            android:id="@+id/explore"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
-            android:text="Explore More"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.122" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:fadeScrollbars="false"
+            android:layout_height="match_parent"
+            android:background="@color/background"
             android:orientation="vertical"
-            android:scrollbars="vertical">
+            tools:context=".Home">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_motor"
-                style="@style/Widget.MaterialComponents.CardView"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_blue_gradient"
+                android:padding="20dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/Judul"
+                    style="@style/TextAppearance.MaterialComponents.Headline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="245dp"
+                    android:layout_marginTop="25dp"
+                    android:lineSpacingExtra="10dp"
+                    android:text="@string/judulHome"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFF"
+                    android:textStyle="bold" />
+
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Judul"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/search_bg"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Cari Motor"
+                    app:layout_constraintTop_toBottomOf="@+id/Judul" />
+
+            </RelativeLayout>
+
+            <!-- Isi Explore More-->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fadeScrollbars="false"
-                android:paddingBottom="0dp"
-                android:layout_marginTop="60dp"
-                android:scrollbars="vertical"
-                app:cardElevation="1dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="0dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/adapter_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@+id/explore">
+
+                <TextView
+                    android:id="@+id/explore"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Explore More"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.122" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:fadeScrollbars="false"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_motor"
+                        style="@style/Widget.MaterialComponents.CardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fadeScrollbars="false"
+                        android:paddingBottom="0dp"
+                        android:layout_marginTop="60dp"
+                        android:scrollbars="vertical"
+                        app:cardElevation="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/adapter_recycler_view" />
+
+                </LinearLayout>
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    app:itemBackground="@color/colorPrimary"
+                    app:itemIconTint="@drawable/selector"
+                    app:itemTextColor="@drawable/selector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/bottom_navigation_menu" />
+            </RelativeLayout>
+
 
         </LinearLayout>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@drawable/selector"
-            app:itemTextColor="@drawable/selector"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_menu" />
-    </RelativeLayout>
-
-
-</LinearLayout>
+    </ScrollView>
 </layout>
