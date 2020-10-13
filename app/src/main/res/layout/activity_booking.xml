@@ -67,42 +67,20 @@
                     android:text="Merk Motor" />
 
 
-                <!-- Fullname-->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layout_tanggalAwal"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Tanggal Awal">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputTanggalAwal"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTanggalAwal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_baseline_person_24"
                         android:drawablePadding="10dp"
-                        android:inputType="date"/>
+                        android:text="Tanggal Pinjam"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
-                <!-- Email-->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layout_tanggalAkhir"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Tanggal Akhir">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_tanggalAkhir"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTanggalAkhir"
                         android:layout_width="match_parent"
+                        android:text="Tanggal Kembali"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_baseline_email_24"
-                        android:drawablePadding="10dp"
-                        android:inputType="date"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:drawablePadding="10dp"/>
 
 
             </LinearLayout>
@@ -122,49 +100,49 @@
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga Sewa"
+                    android:text="Tanggal Awal :"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/inputTglAwal"
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="71dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@id/hargaSewa"
-                    android:text="Harga" />
+                     />
 
                 <TextView
-                    android:id="@+id/layout_totalHari"
+                    android:id="@+id/tglAkhir"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/hargaSewa"
-                    android:text="Total Hari : "
+                    android:text="Tanggal Kembali :"
+
                     android:textStyle="bold" />
 
+                <!--        TOTAL HARGA-->
+
                 <TextView
-                    android:id="@+id/totalHari"
+                    android:id="@+id/inputTglAkhir"
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/hargaSewa"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="144dp"
-                    android:layout_marginBottom="23dp"
-                    android:text="Hari" />
-
-                <!--        TOTAL HARGA-->
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="30dp"
+                    />
 
                 <View
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_below="@id/inputTglAkhir"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="80dp"
-                    android:layout_below="@id/layout_totalHari"
                     android:background="@android:color/darker_gray" />
 
                 <TextView
