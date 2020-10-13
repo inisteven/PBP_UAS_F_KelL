@@ -9,6 +9,7 @@
 
     <!--Mapbox-->
     <string name="access_token">pk.eyJ1Ijoib3J6bm1pIiwiYSI6ImNrZnBjaDF3djA4b20ycnBzMTBwa3I0NDAifQ.rLLPepUTL46TVjrDrZh-HQ</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYXhjZWwwIiwiYSI6ImNrZnFtbXc4djA0dTUycG5wanJmZGJ3aGcifQ.IXYVLCzq4gbQdcOkSdOADA</string>
     <!--    Booom nav-->
     <string name="home">Home</string>
     <string name="profile">Profile</string>
