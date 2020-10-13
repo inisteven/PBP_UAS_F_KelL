@@ -17,7 +17,7 @@ public interface UserDao {
     List<User> getAll();
 
     @Query("SELECT * FROM user WHERE email= :email AND password= :password")
-    public User getUser(String email, String password);
+    User getUser(String email, String password);
 
     @Insert
     void insert(User user);
@@ -25,6 +25,6 @@ public interface UserDao {
     @Update
     void update(User user);
 
-    @Delete
-    void delete(User user);
+//    @Delete
+//    void delete(User user);
 }

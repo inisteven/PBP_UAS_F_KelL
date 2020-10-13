@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -21,6 +22,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.stevenkristian.tubes.database.DatabaseClient;
+import com.stevenkristian.tubes.model.User;
 
 public class SignUp extends AppCompatActivity {
 
@@ -28,12 +31,10 @@ public class SignUp extends AppCompatActivity {
     private MaterialButton register, have_account;
     private ImageView image;
     private TextView logo;
-    private TextInputLayout username, password;
+    private TextInputLayout username_til, password_til, fullname_til, phoneNumber_til, ktp_til, confirm_til;
     private TextInputEditText fullname_et, username_et, phoneNumber_et, ktp_et, password_et, confirm_et;
 
     //Authentication
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener stateListener;
     private String CHANNEL_ID = "Channel 1";
 
     @Override
@@ -44,8 +45,8 @@ public class SignUp extends AppCompatActivity {
         //Animation
         have_account = findViewById(R.id.have_account_btn);
         register = findViewById(R.id.register_btn);
-        username = findViewById(R.id.username_til);
-        password = findViewById(R.id.password_til);
+        username_til = findViewById(R.id.username_til);
+        password_til = findViewById(R.id.password_til);
         image = findViewById(R.id.logo_iv);
         logo = findViewById(R.id.logo_tv);
 
@@ -57,15 +58,10 @@ public class SignUp extends AppCompatActivity {
         password_et = findViewById(R.id.password_et);
         confirm_et = findViewById(R.id.confirm_password_et);
 
-        mAuth = FirebaseAuth.getInstance();
-        stateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getInstance().getCurrentUser() != null){
-                    startActivity(new Intent(SignUp.this, Home.class));
-                }
-            }
-        };
+        fullname_til = findViewById(R.id.fullName_til);
+        phoneNumber_til = findViewById(R.id.phone_til);
+        ktp_til = findViewById(R.id.ktp_til);
+        confirm_til = findViewById(R.id.confirm_password_til);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +70,15 @@ public class SignUp extends AppCompatActivity {
                     startSignUp();
                 }
                 else{
+                    if(confirm_et.getText().toString().isEmpty()){
+                        confirm_til.setError("Please fill Confirm Password Correctly!");
+                    }else{
+                        confirm_til.setError(null);
+                    }if(password_et.getText().toString().isEmpty()){
+                        password_til.setError("Please fill Password Correctly!");
+                    }else{
+                        password_til.setError(null);
+                    }
                     Toast.makeText(getApplicationContext(), "Confirm Password is incorrect", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -90,8 +95,8 @@ public class SignUp extends AppCompatActivity {
 
                 pairs[0] = new Pair<View,String>(image, "logo_image");
                 pairs[1] = new Pair<View,String>(logo, "logo_text");
-                pairs[2] = new Pair<View,String>(username, "username_tran");
-                pairs[3] = new Pair<View,String>(password, "password_tran");
+                pairs[2] = new Pair<View,String>(username_til, "username_tran");
+                pairs[3] = new Pair<View,String>(password_til, "password_tran");
                 pairs[4] = new Pair<View,String>(register, "login_tran");
                 pairs[5] = new Pair<View,String>(have_account, "sign_tran");
 
@@ -101,12 +106,7 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        mAuth.addAuthStateListener(stateListener);
-    }
 
     //Mengecek Tulisan Email yang valid
     public static boolean isValidEmail(CharSequence target) {
@@ -114,36 +114,79 @@ public class SignUp extends AppCompatActivity {
     }
 
     //Proses Sign up
-    private void startSignUp(){
-        String email = username_et.getText().toString();
+    public void startSignUp(){
+        String fullname = fullname_et.getText().toString();
+        String username = username_et.getText().toString();
+        String phone = phoneNumber_et.getText().toString();
+        String ktp = ktp_et.getText().toString();
         String password = password_et.getText().toString();
+        String confirm = confirm_et.getText().toString();
 
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(SignUp.this, "Email empty", Toast.LENGTH_LONG).show();
+        if(fullname.isEmpty() || !isValidEmail(username) || phone.isEmpty() ||
+        ktp.isEmpty() || password.isEmpty() || confirm.isEmpty()){
+            if(fullname.isEmpty()){
+                fullname_til.setError("Please fill Full Name Correctly!");
+            }else{
+                fullname_til.setError(null);
+            }if(!isValidEmail(username)){
+                username_til.setError("Please fill Email Correctly!");
+            }else{
+                username_til.setError(null);
+            }if(phone.isEmpty()){
+                phoneNumber_til.setError("Please fill Phone Number Correctly!");
+            }else{
+                phoneNumber_til.setError(null);
+            }if(ktp.isEmpty()){
+                ktp_til.setError("Please fill KTP Correctly!");
+            }else{
+                ktp_til.setError(null);
+            }if(password.isEmpty()){
+                password_til.setError("Please fill Password Correctly!");
+            }else{
+                password_til.setError(null);
+            }if(confirm.isEmpty()){
+                confirm_til.setError("Please fill Confirm Password Correctly!");
+            }else{
+                confirm_til.setError(null);
+            }
+        }else{
+            addUser();
         }
-        else if(!isValidEmail(email)) {
-            Toast.makeText(SignUp.this, "Email is invalid", Toast.LENGTH_LONG).show();
-        }
-        else if(TextUtils.isEmpty(password)){
-            Toast.makeText(SignUp.this, "Password empty", Toast.LENGTH_LONG).show();
-        }
-        else if(password.length()<6){
-            Toast.makeText(SignUp.this, "Password too short", Toast.LENGTH_LONG).show();
-        } else{
-            mAuth.createUserWithEmailAndPassword(email, password) //membuat user ke firebase
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+    }
 
-                            if(!task.isSuccessful()){
-                                Toast.makeText(SignUp.this, "Registration Failed", Toast.LENGTH_LONG).show();
-                            } else{
-                                Toast.makeText(SignUp.this, "Registration Complete", Toast.LENGTH_LONG).show();
-                                mAuth.signOut();
-                                startActivity(new Intent(SignUp.this, Login.class));
-                            }
-                        }
-                    });
+    private void addUser(){
+        final String fullname = fullname_et.getText().toString();
+        final String username = username_et.getText().toString();
+        final String phone = phoneNumber_et.getText().toString();
+        final String ktp = ktp_et.getText().toString();
+        final String password = password_et.getText().toString();
+
+        class AddUser extends AsyncTask<Void, Void , Void>{
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                User user = new User();
+                user.setFullname(fullname);
+                user.setEmail(username);
+                user.setPhone(phone);
+                user.setKtp(ktp);
+                user.setPassword(password);
+
+                DatabaseClient.getInstance(getApplicationContext()).getDatabase()
+                        .userDao()
+                        .insert(user);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Toast.makeText(getApplicationContext(), "User Saved", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SignUp.this, Login.class));
+            }
         }
+
+        AddUser add = new AddUser();
+        add.execute();
     }
 }
