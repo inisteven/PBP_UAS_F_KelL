@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/username_til"
             android:hint="Email"
+            app:errorEnabled="true"
             android:transitionName="username_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
             <com.google.android.material.textfield.TextInputEditText
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_til"
             android:hint="Password"
+            app:errorEnabled="true"
             android:transitionName="password_tran"
             app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

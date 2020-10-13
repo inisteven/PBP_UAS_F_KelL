@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -62,41 +63,41 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:layout_constraintVertical_bias="0.122" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_below="@+id/popular"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
-        android:baselineAligned="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popular">
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/horizontalScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="125dp"-->
+<!--        android:layout_below="@+id/popular"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:baselineAligned="false"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/popular">-->
 
-        <!--            <LinearLayout-->
-        <!--                android:id="@+id/categoriItem"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginLeft="24dp"-->
-        <!--                android:orientation="horizontal"-->
-        <!--                android:paddingRight="24dp">-->
+<!--        &lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/categoriItem"&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:layout_marginLeft="24dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:orientation="horizontal"&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:paddingRight="24dp">&ndash;&gt;-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_motor_popular"
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="100dp"
-            app:cardElevation="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/popular_recyler_view" />
-        <!--            </LinearLayout>-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recycler_view_motor_popular"-->
+<!--            style="@style/Widget.MaterialComponents.CardView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingBottom="100dp"-->
+<!--            app:cardElevation="1dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:listitem="@layout/popular_recyler_view" />-->
+<!--        &lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 
-    </HorizontalScrollView>
+<!--    </HorizontalScrollView>-->
 
     <!-- Isi Explore More-->
     <RelativeLayout
@@ -152,3 +153,4 @@
 
 
 </LinearLayout>
+</layout>

@@ -21,8 +21,6 @@ public class Home extends AppCompatActivity {
 
     private ArrayList<Motor> ListMotor, ListPopular;
     private RecyclerViewAdapter adapter;
-    private PopularRecyclerViewAdapter adapterPopular;
-
     private ActivityHomeBinding homeBinding;
 
     BottomNavigationView bottomNavigation;
@@ -34,13 +32,6 @@ public class Home extends AppCompatActivity {
 
         //get data motor
         ListMotor = new DaftarMotor().MOTOR;
-        ListPopular = new DaftarPopular().POPULAR;
-
-        //recycler view Popular
-        homeBinding.recyclerViewMotorPopular.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        homeBinding.recyclerViewMotorPopular.setItemAnimator(new DefaultItemAnimator());
-        adapterPopular = new PopularRecyclerViewAdapter(Home.this, ListPopular);
-        homeBinding.recyclerViewMotorPopular.setAdapter(adapterPopular);
 
         //recycler view Explore more
         homeBinding.recyclerViewMotor.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
