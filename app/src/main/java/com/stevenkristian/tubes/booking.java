@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -16,6 +17,7 @@ import java.util.Calendar;
 public class booking extends AppCompatActivity {
     private TextInputEditText tglAwal, tglAkhir;
     private Button book;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +28,20 @@ public class booking extends AppCompatActivity {
         tglAwal = findViewById(R.id.inputTanggalAwal);
         tglAkhir = findViewById(R.id.input_tanggalAkhir);
         book = findViewById(R.id.book_btn);
+        btnBack = findViewById(R.id.btnBack);
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(booking.this, Confirm.class);
                 startActivity(intent);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
             }
         });
 
@@ -48,5 +58,7 @@ public class booking extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+
+
     }
 }

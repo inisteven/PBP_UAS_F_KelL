@@ -23,8 +23,6 @@ public class Home extends AppCompatActivity {
 
     private ActivityHomeBinding homeBinding;
 
-    BottomNavigationView bottomNavigation;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +38,8 @@ public class Home extends AppCompatActivity {
         homeBinding.recyclerViewMotor.setAdapter(adapter);
 
 
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         //set home selected
         bottomNavigationView.setSelectedItemId(R.id.home);
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +9,12 @@
     tools:context=".profile">
 
     <RelativeLayout
+        android:id="@+id/container1"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/bg_blue_gradient"
-        android:padding="20dp">
+        android:padding="20dp"
+        tools:ignore="MissingConstraints">
 
         <ImageButton
             android:id="@+id/fotoProfile"
@@ -50,19 +53,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-70dp"
-        android:padding="20dp" />
+        android:padding="20dp"
+        tools:ignore="MissingConstraints" />
 
     <!--Untuk tombol bawah-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/container1"
             android:padding="20dp">
 
             <!-- Fullname-->
@@ -153,17 +154,18 @@
 
         </LinearLayout>
 
-    </ScrollView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:layout_constraintTop_toBottomOf="@id/container"
         android:layout_gravity="bottom"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/bottom_navigation_menu" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

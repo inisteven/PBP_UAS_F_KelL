@@ -1,10 +1,12 @@
 package com.stevenkristian.tubes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 public class Detail extends AppCompatActivity {
@@ -74,6 +77,33 @@ public class Detail extends AppCompatActivity {
             }
         });
 
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        //set home selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+//                    case R.id.history:
+//                        startActivity(new Intent(getApplicationContext(),Histori.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+                    case R.id.store:
+                        startActivity(new Intent(getApplicationContext(),Store.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 }
