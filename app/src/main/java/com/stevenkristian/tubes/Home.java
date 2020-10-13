@@ -1,19 +1,17 @@
 package com.stevenkristian.tubes;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import com.stevenkristian.tubes.databinding.ActivityHomeBinding;
+//import com.stevenkristian.tubes.databinding.ActivityHomeBinding;
 
 import java.util.ArrayList;
 
@@ -21,7 +19,7 @@ public class Home extends AppCompatActivity {
 
     private ArrayList<Motor> ListMotor, ListPopular;
     private RecyclerViewAdapter adapter;
-    private PopularRecyclerViewAdapter adapterPopular;
+    //private PopularRecyclerViewAdapter adapterPopular;
 
     private ActivityHomeBinding homeBinding;
 
@@ -36,11 +34,11 @@ public class Home extends AppCompatActivity {
         ListMotor = new DaftarMotor().MOTOR;
         ListPopular = new DaftarPopular().POPULAR;
 
-        //recycler view Popular
-        homeBinding.recyclerViewMotorPopular.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        homeBinding.recyclerViewMotorPopular.setItemAnimator(new DefaultItemAnimator());
-        adapterPopular = new PopularRecyclerViewAdapter(Home.this, ListPopular);
-        homeBinding.recyclerViewMotorPopular.setAdapter(adapterPopular);
+//        //recycler view Popular
+//        homeBinding.recyclerViewMotorPopular.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        homeBinding.recyclerViewMotorPopular.setItemAnimator(new DefaultItemAnimator());
+//        adapterPopular = new PopularRecyclerViewAdapter(Home.this, ListPopular);
+//        D
 
         //recycler view Explore more
         homeBinding.recyclerViewMotor.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
