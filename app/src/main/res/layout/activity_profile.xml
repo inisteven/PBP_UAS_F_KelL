@@ -1,96 +1,51 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".profile">
-
-
-    <RelativeLayout
+    android:padding="20dp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/bg_blue_gradient"
-        android:padding="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".profile">
 
-        <ImageButton
-            android:id="@+id/fotoProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_baseline_person_24" />
 
-        <TextView
-            android:id="@+id/hello"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/fotoProfile"
-            android:text="Hello!"
-            android:textSize="16sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_blue_gradient"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/layoutNama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hello"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/fotoProfile"
-            android:text="NAMA DISINI"
-            android:textSize="20sp" />
+            <ImageButton
+                android:id="@+id/fotoProfile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_person_24" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/fotoProfile"
+                android:text="Hello!"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-70dp"
-        android:padding="20dp">
+            <TextView
+                android:id="@+id/layoutNama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hello"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/fotoProfile"
+                android:text="NAMA DISINI"
+                android:textSize="20sp" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="20dp"
-            android:layout_height="68dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-
-            app:cardBackgroundColor="#6cd0ff"
-            app:cardCornerRadius="60dp"
-            app:cardElevation="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:id="@+id/historyLabel"
-                    android:layout_width="63dp"
-                    android:layout_height="57dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="54dp"
-                    android:layout_marginBottom="0dp"
-                    android:src="@drawable/ic_baseline_history_24" />
-
-                <TextView
-                    android:id="@+id/history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/historyLabel"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="60dp"
-                    android:text="Booking History"
-                    android:textSize="20dp" />
-            </RelativeLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
+        </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -192,10 +147,12 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
+            android:layout_marginTop="50dp"
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
-            app:menu="@menu/bottom_navigation_menu"/>
+            app:menu="@menu/bottom_navigation_menu" />
 
-</LinearLayout>
+    </LinearLayout>

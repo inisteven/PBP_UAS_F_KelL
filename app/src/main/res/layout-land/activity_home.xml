@@ -4,11 +4,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".Home">
 
 
     <RelativeLayout
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="235dp"
+            android:layout_marginLeft="245dp"
             android:layout_marginTop="25dp"
             android:lineSpacingExtra="10dp"
             android:text="@string/judulHome"
@@ -38,8 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Judul"
-            android:layout_marginLeft="190dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="22dp"
             android:background="@drawable/search_bg"
             android:iconifiedByDefault="false"
             android:queryHint="Cari Motor"
@@ -47,92 +47,56 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/popular"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchView"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/popular"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.122" />
-
-<!--    <HorizontalScrollView-->
-<!--        android:id="@+id/horizontalScrollView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="125dp"-->
-<!--        android:layout_below="@+id/popular"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/popular">-->
-
-<!--        &lt;!&ndash;            <LinearLayout&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:id="@+id/categoriItem"&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:layout_marginLeft="24dp"&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:orientation="horizontal"&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:paddingRight="24dp">&ndash;&gt;-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_view_motor_popular"-->
-<!--            style="@style/Widget.MaterialComponents.CardView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingBottom="100dp"-->
-<!--            app:cardElevation="1dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            tools:listitem="@layout/popular_recyler_view" />-->
-<!--        &lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
-
-<!--    </HorizontalScrollView>-->
-
     <!-- Isi Explore More-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explore">
 
+        <TextView
+            android:id="@+id/explore"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:text="Explore More"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.122" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:fadeScrollbars="false"
+            android:orientation="vertical"
             android:scrollbars="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_motor"
+                style="@style/Widget.MaterialComponents.CardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.CardView"
-                app:cardElevation="1dp"
-                android:scrollbars="vertical"
                 android:fadeScrollbars="false"
+                android:paddingBottom="0dp"
+                android:layout_marginTop="60dp"
+                android:scrollbars="vertical"
+                app:cardElevation="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/adapter_recycler_view"/>
+                tools:listitem="@layout/adapter_recycler_view" />
 
         </LinearLayout>
 
@@ -140,6 +104,7 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
@@ -148,9 +113,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_menu" />
     </RelativeLayout>
-
-
-
 
 
 </LinearLayout>

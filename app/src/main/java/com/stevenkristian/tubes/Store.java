@@ -46,7 +46,7 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
         //mapbox
         Mapbox.getInstance(this, getString(R.string.access_token));
         mapView = findViewById(R.id.map_view);
-        mapView.onCreate(savedInstanceState);
+        //mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         maps = findViewById(R.id.buttonmaps);
         maps.setOnClickListener(new View.OnClickListener() {

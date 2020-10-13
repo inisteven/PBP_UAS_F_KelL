@@ -1,15 +1,14 @@
 package com.stevenkristian.tubes;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,6 +20,7 @@ public class Home extends AppCompatActivity {
 
     private ArrayList<Motor> ListMotor, ListPopular;
     private RecyclerViewAdapter adapter;
+
     private ActivityHomeBinding homeBinding;
 
     BottomNavigationView bottomNavigation;
