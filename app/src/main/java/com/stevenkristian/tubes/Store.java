@@ -41,10 +41,11 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store);
+        Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
+        setContentView(R.layout.activity_store2);
 
         //mapbox
-        Mapbox.getInstance(this, getString(R.string.access_token));
+
         mapView = findViewById(R.id.map_view);
         //mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);

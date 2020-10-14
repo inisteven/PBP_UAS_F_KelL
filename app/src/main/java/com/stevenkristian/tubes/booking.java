@@ -98,10 +98,8 @@ public class booking extends AppCompatActivity {
             }
         });
 
-//        SimpleDateFormat dates = new SimpleDateFormat("MM/dd/yyyy");
-//        Date date1 = dates.(String.valueOf(materialDatePickerAwal));
-//        Date date2 = dates.(String.valueOf(materialDatePickerAkhir));
-//        long difference = Math.abs(date1.getTime() - date2.getTime());
+
+//        long difference = Math.abs(materialDatePickerAkhir - materialDatePickerAwal);
 //        long differenceDates = difference / (24 * 60 * 60 * 1000);
 //        String dayDifference = Long.toString(differenceDates);
 //        double total= differenceDates*150000;
