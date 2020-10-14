@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
+public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
 
     private Context context;
     private List<Motor>result;
@@ -115,7 +116,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
             if(contraint !=null){
                 if(motorListCari !=null && motorListCari.size()>0){
                     for(final Motor g : motorListCari){
-                        if(g.getMerk().toLowerCase().contains(contraint.toString()))
+                        if(g.getMerk().toLowerCase().contains(contraint.toString().toLowerCase().trim()))
                             result.add(g);
                     }
                 }
