@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -23,9 +24,10 @@ import java.util.TimeZone;
 
 public class booking extends AppCompatActivity {
     private MaterialButton btnTanggalAwal,btnTanggalAkhir;
-    private TextView inputTglAwal,inputTglAkhir,totalHarga;
+    private TextView inputTglAwal,inputTglAkhir,totalHarga,merkMotor;
     private Button book;
     private ImageButton btnBack;
+    private Motor mtr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,18 @@ public class booking extends AppCompatActivity {
 
         book = findViewById(R.id.book_btn);
         btnBack = findViewById(R.id.btnBack);
+
+        //Get Data Motor
+        String strMtr = getIntent().getStringExtra("objMtr");
+        Gson gson = new Gson();
+        mtr = gson.fromJson(strMtr, Motor.class);
+
+        //find layout id
+        merkMotor = findViewById(R.id.merkMotor);
+        //set to layout
+        merkMotor.setText(mtr.merk);
+
+
 
         //datepicker
 
