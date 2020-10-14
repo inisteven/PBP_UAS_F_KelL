@@ -64,6 +64,14 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
                         strMtr[0] = gson.toJson(result.get(2));
                         intent.putExtra("objMtr", strMtr[0]);
                         break;
+                    case 3 :
+                        strMtr[0] = gson.toJson(result.get(3));
+                        intent.putExtra("objMtr", strMtr[0]);
+                        break;
+                    case 4 :
+                        strMtr[0] = gson.toJson(result.get(4));
+                        intent.putExtra("objMtr", strMtr[0]);
+                        break;
 
                 }
                 context.startActivity(intent);

@@ -26,6 +26,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.Kamera.CameraActivity;
 import com.stevenkristian.tubes.database.DatabaseClient;
 import com.stevenkristian.tubes.model.User;
 
@@ -103,6 +104,7 @@ public class profile extends AppCompatActivity {
         profil_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CameraActivity.class));
                 checkCameraPermission();
             }
         });
