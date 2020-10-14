@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,21 +16,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
 
     private Context context;
     private List<Motor>result;
+    private List<Motor>motorListCari = new ArrayList<>();
 
     public RecyclerViewAdapter(Context context, List<Motor> motor){
         this.context = context;
         this.result = motor;
-//        for(int i=0; i<result.size();i++){
-//            if(!result.get(i).getStatus().equalsIgnoreCase("Tersedia")){
-//                this.result.remove(motor.get(i));
-//            }
-//        }
+        motorListCari.addAll(result);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -92,4 +92,35 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
         }
 
     }
+    public Filter getFilter() {
+        return filterMotor;
+    }
+    private Filter filterMotor = new Filter(){
+        @Override
+        protected FilterResults performFiltering(CharSequence contraint){
+
+            final FilterResults oReturn = new FilterResults();
+            final List<Motor> result = new ArrayList<Motor>();
+
+            if(motorListCari==null)
+                motorListCari=result;
+            if(contraint !=null){
+                if(motorListCari !=null && motorListCari.size()>0){
+                    for(final Motor g : motorListCari){
+                        if(g.getMerk().toLowerCase().contains(contraint.toString()))
+                            result.add(g);
+                    }
+                }
+                oReturn.values=result;
+            }
+            return oReturn;
+        }
+
+        @Override
+        protected void publishResults(CharSequence contraint, FilterResults filterResults) {
+
+            result=(List<Motor>)filterResults.values;
+            notifyDataSetChanged ();
+        }
+    };
 }

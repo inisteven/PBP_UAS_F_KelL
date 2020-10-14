@@ -114,7 +114,7 @@
                 android:layout_alignParentBottom="true"
                 app:itemBackground="@color/colorPrimary"
                 app:itemIconTint="@drawable/selector"
-                android:layout_gravity="end"
+                android:layout_gravity="end|bottom"
                 app:itemTextColor="@drawable/selector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

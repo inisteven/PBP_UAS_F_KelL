@@ -175,7 +175,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="173dp"
                 android:layout_marginTop="210dp"
-                android:text="Rp. 150.000,00/hari" />
+                android:text="" />
 
             <Button
                 android:id="@+id/pilih_btn"

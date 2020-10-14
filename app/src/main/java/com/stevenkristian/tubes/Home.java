@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class Home extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     private User user;
     private ActivityHomeBinding homeBinding;
+    private SearchView mySearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +77,7 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
-
+        search();
     }
 
     private User loadPreferences(){
@@ -94,5 +96,21 @@ public class Home extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private void search() {
+        mySearchView=findViewById(R.id.searchView);
+        mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
     }
 }
