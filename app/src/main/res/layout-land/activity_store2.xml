@@ -118,7 +118,7 @@
                         android:layout_height="63dp"
                         android:layout_marginBottom="12dp"
                         android:gravity="center"
-                        android:layout_marginStart="280dp"
+                        android:layout_marginStart="60dp"
                         android:text="Navigation MAPS"
                         android:layout_marginTop="90dp"
                         app:layout_constraintEnd_toEndOf="parent"
