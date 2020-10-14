@@ -24,7 +24,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.Kamera.CameraActivity;
 import com.stevenkristian.tubes.database.DatabaseClient;
