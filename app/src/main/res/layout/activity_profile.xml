@@ -109,7 +109,7 @@
                     android:drawablePadding="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
-            
+
             <!--        noKTP-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_noKtp"
