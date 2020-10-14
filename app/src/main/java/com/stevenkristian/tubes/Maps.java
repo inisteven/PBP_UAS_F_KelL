@@ -170,6 +170,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback, Permi
             }
         }
     }
+    
 
     @Override
     protected void onStart() {
