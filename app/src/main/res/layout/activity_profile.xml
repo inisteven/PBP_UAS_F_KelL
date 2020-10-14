@@ -31,11 +31,13 @@
                 android:id="@+id/hello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="11dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="60dp"
                 android:layout_toEndOf="@+id/fotoProfile"
                 android:text="Hello!"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/layoutNama"
@@ -46,7 +48,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/fotoProfile"
                 android:text="NAMA DISINI"
-                android:textSize="20sp" />
+                style="@style/TextAppearance.MaterialComponents.Headline5" />
 
         </RelativeLayout>
 

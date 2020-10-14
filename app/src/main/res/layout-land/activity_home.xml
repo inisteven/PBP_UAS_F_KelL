@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background"
             android:orientation="vertical"
             tools:context=".Home">
 
+
+            <!-- Isi Explore More-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="245dp"
+                    android:layout_marginLeft="300dp"
                     android:layout_marginTop="25dp"
                     android:lineSpacingExtra="10dp"
                     android:text="@string/judulHome"
@@ -42,8 +43,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/Judul"
-                    android:layout_marginStart="200dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="250dp"
+                    android:layout_marginTop="25dp"
                     android:background="@drawable/search_bg"
                     android:iconifiedByDefault="false"
                     android:queryHint="Cari Motor"
@@ -51,7 +52,6 @@
 
             </RelativeLayout>
 
-            <!-- Isi Explore More-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

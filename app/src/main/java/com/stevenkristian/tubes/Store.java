@@ -46,8 +46,8 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
 
         //mapbox
 
-        mapView = findViewById(R.id.map_view);
-        //mapView.onCreate(savedInstanceState);
+        mapView =(MapView) findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         maps = findViewById(R.id.buttonmaps);
         maps.setOnClickListener(new View.OnClickListener() {
@@ -105,10 +105,6 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
                 .withSource(new GeoJsonSource(SOURCE_ID,
                         FeatureCollection.fromFeatures(symbolLayerIconFeatureList)))
 
-// Adding the actual SymbolLayer to the map style. An offset is added that the bottom of the red
-// marker icon gets fixed to the coordinate, rather than the middle of the icon being fixed to
-// the coordinate point. This is offset is not always needed and is dependent on the image
-// that you use for the SymbolLayer icon.
                 .withLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
                         .withProperties(
                                 iconImage(ICON_ID),
@@ -118,8 +114,6 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
                 ), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
-
-// Map is set up and the style has loaded. Now you can add additional data or make other map adjustments.
 
 
             }

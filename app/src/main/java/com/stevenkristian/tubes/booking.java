@@ -50,8 +50,10 @@ public class booking extends AppCompatActivity {
 
         //find layout id
         merkMotor = findViewById(R.id.merkMotor);
+        totalHarga = findViewById(R.id.totalHarga);
         //set to layout
         merkMotor.setText(mtr.merk);
+        totalHarga.setText("Rp. "+mtr.harga+ " /Hari");
 
 
 

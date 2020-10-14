@@ -156,7 +156,7 @@
                     android:layout_below="@id/divider"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="15dp"
-                    android:text="Total Harga " />
+                    android:text="Harga " />
 
                 <TextView
                     android:id="@+id/totalHarga"
