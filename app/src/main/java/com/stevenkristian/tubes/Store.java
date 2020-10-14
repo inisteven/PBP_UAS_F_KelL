@@ -36,7 +36,6 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
     private static final String ICON_ID = "ICON_ID";
     private static final String LAYER_ID = "LAYER_ID";
     private MapView mapView;
-    private Button maps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +48,6 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
         mapView =(MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-        maps = findViewById(R.id.buttonmaps);
-        maps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Store.this, Maps.class);
-                startActivity(intent);
-            }
-        });
-
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         //set home selected
