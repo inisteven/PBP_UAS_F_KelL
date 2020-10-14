@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -111,8 +112,14 @@ public class booking extends AppCompatActivity {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(booking.this, Confirm.class);
-                startActivity(intent);
+                if(inputTglAwal.getText().toString().isEmpty()
+                        || inputTglAkhir.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please input the Date!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(booking.this, Confirm.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
