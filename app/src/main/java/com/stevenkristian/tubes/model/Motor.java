@@ -30,6 +30,22 @@ public class Motor  implements Serializable {
         this.harga = harga;
         this.imgURL = imgURL;
     }
+    public Motor(String merk, String warna, String plat, String tahun, String status, double harga, String imgURL) {
+        this.merk = merk;
+        this.warna = warna;
+        this.plat = plat;
+        this.tahun = tahun;
+        this.status = status;
+        this.harga = harga;
+        this.imgURL = imgURL;
+    }
+    public int getIdMotor() {
+        return id;
+    }
+
+    public void setIdMotor(int id) {
+        this.id = id;
+    }
 
     public String getMerk()
     {

@@ -1,10 +1,14 @@
 package com.stevenkristian.tubes.admin;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.stevenkristian.tubes.R;
 import com.stevenkristian.tubes.adapter.MotorAdapter;
 import com.stevenkristian.tubes.admin.adapter.MotorAdapterAdmin;
@@ -40,11 +45,27 @@ public class viewsMotorAdmin extends Fragment {
     private MotorAdapterAdmin adapter;
     private List<Motor> ListMotor;
     private View view;
+    private FloatingActionButton floatingButtonPlus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_views_motor_admin, container, false);
+
+        floatingButtonPlus = view.findViewById(R.id.floatingButtonPlus);
+
+        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(Fragment fragment) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_view_motor_admin,fragment)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
 
         setAdapter();
         loadDaftarMotor();
@@ -80,6 +101,8 @@ public class viewsMotorAdmin extends Fragment {
                 }
             }
         });
+
+
 
         //orientasi
         RecyclerView.LayoutManager layoutManager = null;

@@ -8,4 +8,5 @@ public class MotorAPI {
     public static final String URL_ADD = ROOT_API+"motor";
     public static final String URL_UPDATE = ROOT_API+"motor/";
     public static final String URL_DELETE = ROOT_API+"motor/";
+    public static final String URL_IMAGE  = ROOT_URL+"images/";
 }

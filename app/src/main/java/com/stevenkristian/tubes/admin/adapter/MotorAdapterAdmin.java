@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.stevenkristian.tubes.R;
+import com.stevenkristian.tubes.admin.TambahEditMotorAdmin;
 import com.stevenkristian.tubes.api.MotorAPI;
 import com.stevenkristian.tubes.model.Motor;
 
@@ -46,6 +47,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
     private Context context;
     private View view;
     private MotorAdapterAdmin.deleteItemListener mListener;
+
 
     public MotorAdapterAdmin(Context context, List<Motor> motorList,
                              MotorAdapterAdmin.deleteItemListener mListener) {
