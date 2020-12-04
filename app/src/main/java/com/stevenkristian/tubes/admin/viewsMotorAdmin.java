@@ -37,7 +37,7 @@ import static com.android.volley.Request.Method.GET;
 public class viewsMotorAdmin extends Fragment {
 
     private RecyclerView recyclerView;
-    private MotorAdapter adapter;
+    private MotorAdapterAdmin adapter;
     private List<Motor> ListMotor;
     private View view;
 
@@ -46,6 +46,7 @@ public class viewsMotorAdmin extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_views_motor_admin, container, false);
 
+        setAdapter();
         loadDaftarMotor();
         return view;
     }
@@ -61,15 +62,17 @@ public class viewsMotorAdmin extends Fragment {
         getMotor();
     }
 
+
+
     public void setAdapter(){
-        getActivity().setTitle("Data Buku");
+        getActivity().setTitle("Data Motor");
         /*Buat tampilan untuk adapter jika potrait menampilkan 2 data dalam 1 baris,
         sedangakan untuk landscape 4 data dalam 1 baris*/
 
         //biasa
         ListMotor = new ArrayList<Motor>();
         recyclerView = view.findViewById(R.id.recycler_view);
-        adapter = new MotorAdapterAdmin(view.getContext(), ListMotor) {
+        adapter = new MotorAdapterAdmin(view.getContext(), ListMotor, new MotorAdapterAdmin.deleteItemListener() {
             @Override
             public void deleteItem(Boolean delete) {
                 if(delete){
@@ -77,6 +80,7 @@ public class viewsMotorAdmin extends Fragment {
                 }
             }
         });
+
         //orientasi
         RecyclerView.LayoutManager layoutManager = null;
         int orientation = getResources().getConfiguration().orientation;
