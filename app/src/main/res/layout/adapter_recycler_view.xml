@@ -3,7 +3,7 @@
     <data>
         <variable
             name="mtr"
-            type="com.stevenkristian.tubes.Motor" />
+            type="com.stevenkristian.tubes.model.Motor" />
     </data>
     <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_marginBottom="3dp"
-        tools:context=".RecyclerViewAdapter"
+        tools:context=".adapter.MotorAdapter"
         android:id="@+id/ParentAdapter"
         android:clickable="true"
         android:focusable="true"

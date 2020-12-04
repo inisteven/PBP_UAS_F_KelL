@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,13 +16,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.stevenkristian.tubes.api.MotorAPI;
+import com.stevenkristian.tubes.api.UserAPI;
 import com.stevenkristian.tubes.database.DatabaseClient;
+import com.stevenkristian.tubes.model.Motor;
 import com.stevenkristian.tubes.model.User;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.android.volley.Request.Method.GET;
+import static com.android.volley.Request.Method.POST;
 
 public class SignUp extends AppCompatActivity {
 
@@ -33,12 +55,17 @@ public class SignUp extends AppCompatActivity {
     private TextInputEditText fullname_et, username_et, phoneNumber_et, ktp_et, password_et, confirm_et;
 
     //Authentication
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener stateListener;
+
     private String CHANNEL_ID = "Channel 1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Animation
         have_account = findViewById(R.id.have_account_btn);
@@ -148,43 +175,91 @@ public class SignUp extends AppCompatActivity {
                 confirm_til.setError(null);
             }
         }else{
-            addUser();
+            mAuth.createUserWithEmailAndPassword(username, password) //membuat user ke firebase
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if(!task.isSuccessful()){
+                                Toast.makeText(SignUp.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                            } else{
+                                mAuth.getCurrentUser().sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            tambahUser(fullname, username, password, phone, ktp);
+
+                                        }else{
+                                            Toast.makeText(SignUp.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    });
         }
     }
 
-    private void addUser(){
-        final String fullname = fullname_et.getText().toString();
-        final String username = username_et.getText().toString();
-        final String phone = phoneNumber_et.getText().toString();
-        final String ktp = ktp_et.getText().toString();
-        final String password = password_et.getText().toString();
 
-        class AddUser extends AsyncTask<Void, Void , Void>{
+    public void tambahUser(final String name, final String email, final String password, final String phone, final String ktp){
+        //Pendeklarasian queue
+        RequestQueue queue = Volley.newRequestQueue(this);
 
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("loading....");
+        progressDialog.setTitle("Menambahkan data user");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        //Memulai membuat permintaan request menghapus data ke jaringan
+        StringRequest stringRequest = new StringRequest(POST, UserAPI.URL_ADD, new Response.Listener<String>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                User user = new User();
-                user.setFullname(fullname);
-                user.setEmail(username);
-                user.setPhone(phone);
-                user.setKtp(ktp);
-                user.setPassword(password);
+            public void onResponse(String response) {
+                //Disini bagian jika response jaringan berhasil tidak terdapat ganguan/error
+                progressDialog.dismiss();
+                try {
+                    //Mengubah response string menjadi object
+                    JSONObject obj = new JSONObject(response);
 
-                DatabaseClient.getInstance(getApplicationContext()).getDatabase()
-                        .userDao()
-                        .insert(user);
-                return null;
+                    //obj.getString("message") digunakan untuk mengambil pesan message dari response
+                    Toast.makeText(SignUp.this, "Registration Success! Please check your email for verification !", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(SignUp.this, Login.class));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
+        }, new Response.ErrorListener() {
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                Toast.makeText(getApplicationContext(), "User Saved", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignUp.this, Login.class));
+            public void onErrorResponse(VolleyError error) {
+                //Disini bagian jika response jaringan terdapat ganguan/error
+                progressDialog.dismiss();
+                Toast.makeText(SignUp.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
+        }){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                /*
+                    Disini adalah proses memasukan/mengirimkan parameter key dengan data value,
+                    dan nama key nya harus sesuai dengan parameter key yang diminta oleh jaringan
+                    API.
+                */
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("name", name);
+                params.put("email", email);
+                params.put("password", password);
+                params.put("phone", phone);
+                params.put("ktp", ktp);
+                params.put("imgURL", "-");
 
-        AddUser add = new AddUser();
-        add.execute();
+                return params;
+            }
+        };
+
+        //Disini proses penambahan request yang sudah kita buat ke reuest queue yang sudah dideklarasi
+        queue.add(stringRequest);
     }
 }

@@ -26,6 +26,18 @@ public class User implements Serializable {
     @ColumnInfo(name = "ktp")
     public String ktp;
 
+    public String imgURL;
+
+    public User(int id, String fullname, String email, String password, String phone, String ktp, String imgURL) {
+        this.id = id;
+        this.fullname = fullname;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.ktp = ktp;
+        this.imgURL = imgURL;
+    }
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
@@ -49,4 +61,8 @@ public class User implements Serializable {
     public String getKtp() { return ktp; }
 
     public void setKtp(String ktp) { this.ktp = ktp; }
+
+    public String getImgURL() { return imgURL; }
+
+    public void setImgURL(String imgURL) { this.imgURL = imgURL; }
 }

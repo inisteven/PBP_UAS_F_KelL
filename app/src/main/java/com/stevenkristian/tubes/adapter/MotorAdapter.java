@@ -1,4 +1,4 @@
-package com.stevenkristian.tubes;
+package com.stevenkristian.tubes.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,18 +15,21 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.Detail;
+import com.stevenkristian.tubes.R;
 import com.stevenkristian.tubes.databinding.AdapterRecyclerViewBinding;
+import com.stevenkristian.tubes.model.Motor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
+public class MotorAdapter extends RecyclerView.Adapter<MotorAdapter.MyViewHolder> implements Filterable {
 
     private Context context;
     private List<Motor>result;
     private List<Motor>motorListCari = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context context, List<Motor> motor){
+    public MotorAdapter(Context context, List<Motor> motor){
         this.context = context;
         this.result = motor;
         motorListCari.addAll(result);
@@ -36,7 +39,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AdapterRecyclerViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.adapter_recycler_view,parent,false);
+        AdapterRecyclerViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.adapter_recycler_view,parent,false);
                 //AdapterRecyclerViewBinding.inflate(layoutInflater, parent, false);
         return new MyViewHolder(binding);
     }

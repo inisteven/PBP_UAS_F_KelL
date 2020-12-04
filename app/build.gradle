@@ -47,9 +47,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
+    //GLide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    //GSON
     implementation "com.google.code.gson:gson:2.8.5"
     implementation "com.squareup.retrofit2:converter-gson:2.6.1"
 
@@ -62,4 +64,13 @@ dependencies {
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //Firebase Auth
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-database:19.4.0'
+    implementation 'com.firebase:firebase-client-android:2.3.1'
+
+    //Volley
+    implementation 'com.android.volley:volley:1.1.0'
 }
+apply plugin: 'com.google.gms.google-services'

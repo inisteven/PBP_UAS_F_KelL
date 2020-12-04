@@ -3,10 +3,7 @@ package com.stevenkristian.tubes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,11 +13,10 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.model.Motor;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 
 public class booking extends AppCompatActivity {

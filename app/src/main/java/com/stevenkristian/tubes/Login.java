@@ -18,9 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.database.DatabaseClient;
 import com.stevenkristian.tubes.model.User;
@@ -36,12 +40,17 @@ public class Login extends AppCompatActivity {
     private TextInputEditText username_et, password_et;
 
     //Authentication
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener stateListener;
+
     private String CHANNEL_ID = "Channel 1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loadPreferences();
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Animation
         login = (MaterialButton) findViewById(R.id.login_btn);
@@ -104,41 +113,33 @@ public class Login extends AppCompatActivity {
                 password_til.setError(null);
             }
         }else{
-            getUser(email, password);
+            //getUser(email, password);
+            mAuth.signInWithEmailAndPassword(email, password) //Sign in user ke firebase
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if(!task.isSuccessful()){
+                                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }else{
+                                if(mAuth.getCurrentUser().isEmailVerified()){
+                                    savePreferences();
+                                    Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Login.this, Home.class));
+                                }else{
+                                    Toast.makeText(Login.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
         }
     }
 
-    private void getUser(String email, String password){
-        class GetUser extends AsyncTask<Void,Void, User>{
 
-            @Override
-            protected User doInBackground(Void...voids) {
-                User result = DatabaseClient.getInstance(getApplicationContext())
-                        .getDatabase()
-                        .userDao()
-                        .getUser(email,password);
-                return result;
-            }
 
-            @Override
-            protected void onPostExecute(User user) {
-                super.onPostExecute(user);
-                if(user == null){
-                    Toast.makeText(getApplicationContext(), "User not Found", Toast.LENGTH_SHORT).show();
-                }else{
-                    savePreferences(user);
-                    startActivity(new Intent(Login.this, Home.class));
-                }
-            }
-        }
-
-        GetUser get = new GetUser();
-        get.execute();
-    }
-
-    private void savePreferences(User user){
+    private void savePreferences(){
         Gson gson = new Gson();
-        String strUser = gson.toJson(user);
+        String strUser = mAuth.getCurrentUser().getEmail();
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("keyUser",strUser);
         editor.apply();

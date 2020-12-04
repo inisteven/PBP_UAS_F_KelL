@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,14 +21,29 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.Kamera.CameraActivity;
+import com.stevenkristian.tubes.api.MotorAPI;
+import com.stevenkristian.tubes.api.UserAPI;
 import com.stevenkristian.tubes.database.DatabaseClient;
+import com.stevenkristian.tubes.model.Motor;
 import com.stevenkristian.tubes.model.User;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.android.volley.Request.Method.GET;
 
 public class profile extends AppCompatActivity {
     private SharedPreferences preferences;
@@ -37,13 +53,15 @@ public class profile extends AppCompatActivity {
     TextInputEditText fullname_et, email_et, phone_et, ktp_et;
     MaterialButton btnSignOut, btnUpdate;
     ImageButton profil_ib;
+    private String strUser;
     private User user;
+    private FirebaseAuth mFirebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         if(loadPreferences()!=null){
-            user = loadPreferences();
+           strUser = loadPreferences();
         }else{
             Toast.makeText(this, "User not Found", Toast.LENGTH_SHORT).show();
             finish();
@@ -63,11 +81,10 @@ public class profile extends AppCompatActivity {
         phone_et = findViewById(R.id.input_phoneNumber);
         ktp_et = findViewById(R.id.input_noKtp);
 
-        fullname_tv.setText(user.getFullname());
-        fullname_et.setText(user.getFullname());
-        email_et.setText(user.getEmail());
-        phone_et.setText(user.getPhone());
-        ktp_et.setText(user.getKtp());
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        getUser();
+
 
         //Bottom navigation
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -121,6 +138,7 @@ public class profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 deletePreferences();
+                mFirebaseAuth.signOut();
                 startActivity(new Intent(profile.this, Login.class));
                 finish();
             }
@@ -151,6 +169,60 @@ public class profile extends AppCompatActivity {
         user.setKtp(ktp);
 
         update(user);
+    }
+
+    public void getUser() {
+        //Tambahkan tampil buku disini
+        //Pendeklarasian queue
+        RequestQueue queue = Volley.newRequestQueue(getApplication());
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("loading....");
+        progressDialog.setTitle("Menampilkan data buku");
+        progressDialog.setProgressStyle(android.app.ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        final JsonObjectRequest stringRequest = new JsonObjectRequest(GET, UserAPI.URL_LOGIN+strUser
+                , null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+                try {
+                    //Mengubah data jsonArray tertentu menjadi json Object
+                    JSONObject jsonObject = (JSONObject) response.getJSONObject("data");
+
+                    int id = jsonObject.getInt("id");
+                    String name = jsonObject.getString("name");
+                    String email = jsonObject.getString("email");
+                    String password = jsonObject.getString("password");
+                    String phone = jsonObject.getString("phone");
+                    String ktp = jsonObject.getString("ktp");
+                    String imgURL = jsonObject.getString("imgURL");
+
+                    //Membuat objek user
+                    user = new User(id, name, email, password, phone, ktp, imgURL);
+                    fullname_tv.setText(user.getFullname());
+                    fullname_et.setText(user.getFullname());
+                    email_et.setText(user.getEmail());
+                    phone_et.setText(user.getPhone());
+                    ktp_et.setText(user.getKtp());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getApplication(), response.optString("message"),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplication(), error.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+
+        queue.add(stringRequest);
     }
 
     private void update(final User user){
@@ -191,21 +263,16 @@ public class profile extends AppCompatActivity {
         editor.apply();
     }
 
-    private User loadPreferences(){
+    private String loadPreferences(){
         String name = "user";
         String strUser;
         preferences = getSharedPreferences(name, mode);
         if(preferences != null){
             strUser = preferences.getString("keyUser", null);
             if(strUser != null){
-                Gson gson = new Gson();
-                User user;
-                user = gson.fromJson(strUser, User.class);
-
-                return user;
+                return strUser;
             }
         }
-
         return null;
     }
 }

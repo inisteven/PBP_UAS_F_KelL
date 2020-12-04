@@ -2,7 +2,6 @@ package com.stevenkristian.tubes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.model.Motor;
 
 public class Detail extends AppCompatActivity {
     private ImageView motor_iv;
@@ -53,7 +53,7 @@ public class Detail extends AppCompatActivity {
         plat_tv.setText(mtr.plat);
         tahun_tv.setText(mtr.tahun);
         status_tv.setText(mtr.status);
-        harga_tv.setText(mtr.harga);
+        harga_tv.setText(String.valueOf(mtr.harga));
 
         pilih.setOnClickListener(new View.OnClickListener() {
             @Override

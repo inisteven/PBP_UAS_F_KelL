@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        deletePreferences();
 
         //Firebase Notification
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -93,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }, SPLASH_SCREEN);
 
+    }
+
+    private void deletePreferences(){
+        String name = "user";
+        String strUser = null;
+        preferences = getSharedPreferences(name, mode);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear().apply();
     }
 
     private String loadPreferences(){

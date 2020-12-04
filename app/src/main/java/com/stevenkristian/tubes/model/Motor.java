@@ -1,4 +1,4 @@
-package com.stevenkristian.tubes;
+package com.stevenkristian.tubes.model;
 
 
 import android.view.View;
@@ -6,18 +6,22 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.stevenkristian.tubes.R;
 
-public class Motor  {
+import java.io.Serializable;
 
+public class Motor  implements Serializable {
+
+    public int id;
     public String merk;
     public String warna;
     public String plat;
     public String tahun;
     public String status;
-    public String harga;
+    public double harga;
     public String imgURL;
 
-    public Motor(String merk, String warna, String plat, String tahun, String status, String harga, String imgURL) {
+    public Motor(int id,String merk, String warna, String plat, String tahun, String status, double harga, String imgURL) {
         this.merk = merk;
         this.warna = warna;
         this.plat = plat;
@@ -77,14 +81,19 @@ public class Motor  {
         this.status = status;
     }
 
-    public String getHarga()
+    public double getHarga()
     {
         return harga;
     }
 
-    public void setHarga(String harga)
+    public void setHarga(double harga)
     {
         this.harga = harga;
+    }
+
+    public String getStringHarga()
+    {
+        return String.valueOf(harga);
     }
 
     public String getImgURL() { return imgURL; }
@@ -104,6 +113,6 @@ public class Motor  {
        }else{
             imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
         }
-       }
-  }
+    }
+}
 
