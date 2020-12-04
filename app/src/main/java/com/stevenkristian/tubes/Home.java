@@ -128,13 +128,13 @@ public class Home extends AppCompatActivity {
     }
 
     public void getMotor() {
-        //Tambahkan tampil buku disini
+        //Tambahkan tampil motor disini
         //Pendeklarasian queue
         RequestQueue queue = Volley.newRequestQueue(getApplication());
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("loading....");
-        progressDialog.setTitle("Menampilkan data buku");
+        progressDialog.setTitle("Menampilkan data motor");
         progressDialog.setProgressStyle(android.app.ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
@@ -144,8 +144,8 @@ public class Home extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 progressDialog.dismiss();
                 try {
-                    //Mengambil data response json object yang berupa data buku
-                    JSONArray jsonArray = response.getJSONArray("data");
+                    //Mengambil data response json object yang berupa data motor
+                    JSONArray jsonArray = response.getJSONArray("motor");
 
                     if(!ListMotor.isEmpty())
                         ListMotor.clear();

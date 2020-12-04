@@ -29,6 +29,8 @@ public class MotorAdapter extends RecyclerView.Adapter<MotorAdapter.MyViewHolder
     private List<Motor>result;
     private List<Motor>motorListCari = new ArrayList<>();
 
+
+
     public MotorAdapter(Context context, List<Motor> motor){
         this.context = context;
         this.result = motor;
