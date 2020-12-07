@@ -54,18 +54,18 @@ public class viewsMotorAdmin extends Fragment {
 
         floatingButtonPlus = view.findViewById(R.id.floatingButtonPlus);
 
-        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(Fragment fragment) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_view_motor_admin,fragment)
-                        .addToBackStack(null)
-                        .commit();
-
-            }
-        });
+//        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(Fragment fragment) {
+//                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+//                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.frame_view_motor_admin,fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//
+//            }
+//        });
 
         setAdapter();
         loadDaftarMotor();
