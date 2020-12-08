@@ -1,19 +1,28 @@
 package com.stevenkristian.tubes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +34,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,6 +45,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.Kamera.CameraActivity;
+import com.stevenkristian.tubes.admin.viewsMotorAdmin;
 import com.stevenkristian.tubes.api.MotorAPI;
 import com.stevenkristian.tubes.api.UserAPI;
 import com.stevenkristian.tubes.database.DatabaseClient;
@@ -43,7 +56,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.android.volley.Request.Method.GET;
+import static com.android.volley.Request.Method.POST;
+import static com.android.volley.Request.Method.PUT;
 
 public class profile extends AppCompatActivity {
     private SharedPreferences preferences;
@@ -56,6 +76,13 @@ public class profile extends AppCompatActivity {
     private String strUser;
     private User user;
     private FirebaseAuth mFirebaseAuth;
+
+    private String selected;
+    private Bitmap bitmap;
+    private Uri selectedImage = null;
+    private static final int PERMISSION_CODE = 1000;
+    private String image = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +146,61 @@ public class profile extends AppCompatActivity {
         //Foto Profil
         profil_ib.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CameraActivity.class));
-                checkCameraPermission();
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = LayoutInflater.from(v.getContext());
+                View view = layoutInflater.inflate(R.layout.pilih_media, null);
+
+                final AlertDialog alertD = new AlertDialog.Builder(view.getContext()).create();
+
+                Button btnKamera = (Button) view.findViewById(R.id.btnKamera);
+                Button btnGaleri = (Button) view.findViewById(R.id.btnGaleri);
+
+                btnKamera.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        selected="kamera";
+                        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
+                        {
+                            if(getApplication().checkSelfPermission(Manifest.permission.CAMERA)==
+                                    PackageManager.PERMISSION_DENIED ||
+                                    getApplication().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
+                                            PackageManager.PERMISSION_DENIED){
+                                String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                                requestPermissions(permission,PERMISSION_CODE);
+                            }
+                            else{
+                                openCamera();
+                            }
+                        }
+                        else{
+                            openCamera();
+                        }
+                        alertD.dismiss();
+                    }
+                });
+
+                btnGaleri.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        selected="galeri";
+                        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
+                        {
+                            if(getApplication().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
+                                    PackageManager.PERMISSION_DENIED){
+                                String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                                requestPermissions(permission,PERMISSION_CODE);
+                            }
+                            else{
+                                openGallery();
+                            }
+                        }
+                        else{
+                            openGallery();
+                        }
+                        alertD.dismiss();
+                    }
+                });
+
+                alertD.setView(view);
+                alertD.show();
             }
         });
 
@@ -146,15 +225,80 @@ public class profile extends AppCompatActivity {
         });
     }
 
-    private final int MY_PERMISSIONS_REQUEST_USE_CAMERA = 0x00AF;
-    private void checkCameraPermission(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED) {
-            Log.d("Error","Permission not available requesting permission");
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_USE_CAMERA);
-        } else {
-            Log.d("Error","Permission has already granted");
+    private void openGallery(){
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, 1);
+    }
+
+    private void openCamera() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,2);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case PERMISSION_CODE:{
+                if(grantResults.length > 0 && grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED){
+                    if(selected.equals("kamera"))
+                        openCamera();
+                    else
+                        openGallery();
+                }else{
+                    Toast.makeText(this ,"Permision denied",Toast.LENGTH_SHORT).show();
+                }
+            }
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1 && data != null)
+        {
+            selectedImage = data.getData();
+            try {
+                InputStream inputStream = getApplication().getContentResolver().openInputStream(selectedImage);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+            profil_ib.setImageBitmap(bitmap);
+            bitmap = getResizedBitmap(bitmap, 512);
+
+        }
+        else if(resultCode == RESULT_OK && requestCode == 2 & data != null)
+        {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            profil_ib.setImageBitmap(bitmap);
+            bitmap = getResizedBitmap(bitmap, 512);
+        }
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+    private String imageToString(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
     }
 
     private void startUpdate(){
@@ -168,7 +312,7 @@ public class profile extends AppCompatActivity {
         user.setPhone(phone);
         user.setKtp(ktp);
 
-        update(user);
+        update();
     }
 
     public void getUser() {
@@ -178,7 +322,7 @@ public class profile extends AppCompatActivity {
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("loading....");
-        progressDialog.setTitle("Menampilkan data buku");
+        progressDialog.setTitle("Menampilkan data User");
         progressDialog.setProgressStyle(android.app.ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
@@ -207,6 +351,14 @@ public class profile extends AppCompatActivity {
                     phone_et.setText(user.getPhone());
                     ktp_et.setText(user.getKtp());
 
+                    if(!imgURL.equalsIgnoreCase("-")){
+                        Glide.with(getApplication())
+                                .load(UserAPI.URL_IMAGE + imgURL)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(profil_ib);
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -225,29 +377,63 @@ public class profile extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void update(final User user){
-        class UpdateUser extends AsyncTask<Void, Void, Void>{
+    public void update(){
+        //Tambahkan tambah buku disini
+        //Pendeklarasian queue
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        //meminta tanggapan string dari url yang telah disediakan menggunakan method GET
+        //tidak perlu parameter
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("loading.....");
+        progressDialog.setTitle("Mengupdate data User");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        //Memulai membuat permintaan requwst menghaspu data ke jaringan
+        StringRequest stringRequest = new StringRequest(PUT, UserAPI.URL_UPDATE + user.getId(), new
+                Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //disini bagian jika respon berhasil
+                        progressDialog.dismiss();
+                        try {
+                            //mengubah response string menjadi object
+                            JSONObject obj = new JSONObject(response);
+
+                            //obj.getstring("message") digunakan untuk mengambil pesan message dari response
+                            Toast.makeText(profile.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //respone error
+                progressDialog.dismiss();
+                Toast.makeText(profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                ktp_et.setText(imageToString(bitmap));
+                Toast.makeText(profile.this, imageToString(bitmap), Toast.LENGTH_LONG).show();
+            }
+        }){
 
             @Override
-            protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(getApplicationContext())
-                        .getDatabase()
-                        .userDao()
-                        .update(user);
-                return null;
-            }
+            protected Map<String,String> getParams()
+            {
+                //disini proses kirim value parameter
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name",user.getFullname());
+                params.put("phone",user.getPhone());
+                params.put("ktp", user.getKtp());
+                params.put("imgURL",imageToString(bitmap));
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                savePreferences(user);
-                Toast.makeText(getApplicationContext(), "User updated", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
+                return params;
             }
-        }
-        UpdateUser updateUser = new UpdateUser();
-        updateUser.execute();
+        };
+        //proses penambahan request yang sudah kiat buat ke requet queue
+        queue.add(stringRequest);
     }
 
     private void deletePreferences(){

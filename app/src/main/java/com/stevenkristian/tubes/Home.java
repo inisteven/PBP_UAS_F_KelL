@@ -145,7 +145,7 @@ public class Home extends AppCompatActivity {
                 progressDialog.dismiss();
                 try {
                     //Mengambil data response json object yang berupa data motor
-                    JSONArray jsonArray = response.getJSONArray("motor");
+                    JSONArray jsonArray = response.getJSONArray("data");
 
                     if(!ListMotor.isEmpty())
                         ListMotor.clear();

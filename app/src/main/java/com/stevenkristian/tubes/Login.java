@@ -26,6 +26,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.admin.AdminHome;
 import com.stevenkristian.tubes.database.DatabaseClient;
 import com.stevenkristian.tubes.model.User;
 
@@ -114,24 +115,30 @@ public class Login extends AppCompatActivity {
             }
         }else{
             //getUser(email, password);
-            mAuth.signInWithEmailAndPassword(email, password) //Sign in user ke firebase
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+            if(email.equalsIgnoreCase("admin@admin.com") && password.equalsIgnoreCase("admin"))
+            {
+                startActivity(new Intent(Login.this, AdminHome.class));
+            }
+            else {
+                mAuth.signInWithEmailAndPassword(email, password) //Sign in user ke firebase
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if(!task.isSuccessful()){
-                                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                            }else{
-                                if(mAuth.getCurrentUser().isEmailVerified()){
-                                    savePreferences();
-                                    Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(Login.this, Home.class));
-                                }else{
-                                    Toast.makeText(Login.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
+                                if (!task.isSuccessful()) {
+                                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if (mAuth.getCurrentUser().isEmailVerified()) {
+                                        savePreferences();
+                                        Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(Login.this, Home.class));
+                                    } else {
+                                        Toast.makeText(Login.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+            }
         }
     }
 

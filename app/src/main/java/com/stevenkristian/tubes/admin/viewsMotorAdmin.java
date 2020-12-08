@@ -56,18 +56,20 @@ public class viewsMotorAdmin extends Fragment {
 
         floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(Fragment fragment) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_view_motor_admin,fragment)
-                        .addToBackStack(null)
+            public void onClick(View view) {
+                Bundle data = new Bundle();
+                data.putString("status", "tambah");
+                TambahEditMotorAdmin tambahEditMotor = new TambahEditMotorAdmin();
+                tambahEditMotor.setArguments(data);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager .beginTransaction()
+                        .replace(R.id.fragment_tambah_edit_motor_admin, tambahEditMotor)
                         .commit();
 
             }
         });
 
-        setAdapter();
         loadDaftarMotor();
         return view;
     }
@@ -137,7 +139,7 @@ public class viewsMotorAdmin extends Fragment {
                 progressDialog.dismiss();
                 try {
                     //Mengambil data response json object yang berupa data motor
-                    JSONArray jsonArray = response.getJSONArray("motor");
+                    JSONArray jsonArray = response.getJSONArray("data");
 
                     if(!ListMotor.isEmpty())
                         ListMotor.clear();

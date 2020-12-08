@@ -34,6 +34,9 @@ public class AdminHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+        init();
+        setAtribut();
+
     }
     private void init() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -45,7 +48,6 @@ public class AdminHome extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.NavigatioView);
-        View view = nv.getHeaderView(0);
     }
 
     private void setAtribut() {
