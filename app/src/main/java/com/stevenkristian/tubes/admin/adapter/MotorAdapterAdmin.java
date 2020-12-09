@@ -79,7 +79,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
         holder.tvStatus.setText(motor.getStatus());
         holder.tvHarga.setText(motor.getStringHarga());
         Glide.with(context)
-                .load(motor.getImgURL())
+                .load(MotorAPI.URL_IMAGE+ motor.getImgURL())
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)

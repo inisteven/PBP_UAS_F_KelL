@@ -6,7 +6,10 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.stevenkristian.tubes.R;
+import com.stevenkristian.tubes.api.MotorAPI;
+import com.stevenkristian.tubes.api.UserAPI;
 
 import java.io.Serializable;
 
@@ -124,8 +127,11 @@ public class Motor  implements Serializable {
     {
         ImageView imageView = (ImageView) view;
         if (!imageURL.equals("")){
-           Glide.with(view.getContext())
-                    .load(imageURL).into(imageView);
+            Glide.with(view.getContext())
+                    .load(MotorAPI.URL_IMAGE + imageURL)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(imageView);
        }else{
             imageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
         }
