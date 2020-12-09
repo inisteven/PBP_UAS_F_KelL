@@ -61,6 +61,7 @@ public class TambahEditMotorAdmin extends Fragment {
     private String status, selected;
     private Motor motor;
     private View view;
+    private int EditImg;
     private Bitmap bitmap = null;
     private Bitmap editBitmap = null;
     private BitmapDrawable drawable;
@@ -115,7 +116,6 @@ public class TambahEditMotorAdmin extends Fragment {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(ivGambar);
-
         }
     }
 
@@ -438,7 +438,7 @@ public class TambahEditMotorAdmin extends Fragment {
                     editBitmap = drawable.getBitmap();
                     params.put("imgURL",imageToString(editBitmap));
                 }
-                else
+                else if(bitmap != null)
                     params.put("imgURL", imageToString(bitmap));
                 return params;
             }

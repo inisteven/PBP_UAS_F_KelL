@@ -14,7 +14,7 @@
         android:scrollbars="vertical"
         app:cardElevation="1dp"
         tools:listitem="@layout/item_history"/>
-
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,5 +30,6 @@
             android:layout_gravity="end|bottom"
             app:menu="@menu/bottom_navigation_menu" />
     </RelativeLayout>
+
 
 </LinearLayout>
