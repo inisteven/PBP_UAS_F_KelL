@@ -120,6 +120,7 @@ public class Login extends AppCompatActivity {
             {
                 clearTxt();
                 startActivity(new Intent(Login.this, HomeAdmin.class));
+                finish();
             }
             else {
                 mAuth.signInWithEmailAndPassword(email, password) //Sign in user ke firebase
