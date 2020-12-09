@@ -4,15 +4,16 @@
     package="com.stevenkristian.tubes">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Kamera -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Mapbox -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.type.watch" />
 
     <application
         android:allowBackup="true"
@@ -21,16 +22,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.AdminHome"></activity>
-        <activity android:name=".Store" />
-        <activity android:name=".Kamera.CameraActivity" />
-        <activity android:name=".Detail" />
-        <activity android:name=".Confirm" />
-        <activity android:name=".booking" />
-        <activity android:name=".profile" />
-        <activity android:name=".Home" />
-        <activity android:name=".konfirmasi" />
-
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
@@ -42,6 +33,16 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
+        <activity android:name=".admin.AdminHome" />
+        <activity android:name=".admin.HomeAdmin" />
+        <activity android:name=".Store" />
+        <activity android:name=".Kamera.CameraActivity" />
+        <activity android:name=".Detail" />
+        <activity android:name=".Confirm" />
+        <activity android:name=".booking" />
+        <activity android:name=".profile" />
+        <activity android:name=".Home" />
+        <activity android:name=".konfirmasi" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">

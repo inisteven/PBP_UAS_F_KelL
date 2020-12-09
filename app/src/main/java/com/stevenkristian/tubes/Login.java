@@ -27,6 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.stevenkristian.tubes.admin.AdminHome;
+import com.stevenkristian.tubes.admin.HomeAdmin;
 import com.stevenkristian.tubes.database.DatabaseClient;
 import com.stevenkristian.tubes.model.User;
 
@@ -117,7 +118,7 @@ public class Login extends AppCompatActivity {
             //getUser(email, password);
             if(email.equalsIgnoreCase("admin@admin.com") && password.equalsIgnoreCase("admin"))
             {
-                startActivity(new Intent(Login.this, AdminHome.class));
+                startActivity(new Intent(Login.this, HomeAdmin.class));
             }
             else {
                 mAuth.signInWithEmailAndPassword(email, password) //Sign in user ke firebase

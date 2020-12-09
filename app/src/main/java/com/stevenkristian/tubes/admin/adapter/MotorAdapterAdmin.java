@@ -53,7 +53,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
                              MotorAdapterAdmin.deleteItemListener mListener) {
         this.context = context;
         this.motorList = motorList;
-        this.motorListFiltered = motorListFiltered;
+        this.motorListFiltered = motorList;
         this.mListener = mListener;
     }
     public interface deleteItemListener {

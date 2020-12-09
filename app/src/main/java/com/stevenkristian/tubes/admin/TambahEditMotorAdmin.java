@@ -60,25 +60,25 @@ public class TambahEditMotorAdmin extends Fragment {
     private String status, selected;
     private Motor motor;
     private View view;
-    private Bitmap bitmap;
+    private Bitmap bitmap = null;
     private Uri selectedImage = null;
     private static final int PERMISSION_CODE = 1000;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       view = inflater.inflate(R.layout.fragment_tambah_edit_motor_admin, container, false);
-       init();
+        view = inflater.inflate(R.layout.fragment_tambah_edit_motor_admin, container, false);
+        init();
         setAttribut();
 
-       return view;
+        return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     public void init(){
@@ -298,6 +298,14 @@ public class TambahEditMotorAdmin extends Fragment {
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
+    private String imageToString(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+    }
+
     //Create
     public void tambahMotor(String merk, String warna, String plat, String tahun, String status, double harga, String imgURL){
         //Tambahkan tambah buku disini
@@ -324,12 +332,11 @@ public class TambahEditMotorAdmin extends Fragment {
                             //mengubah response string menjadi object
                             JSONObject obj = new JSONObject(response);
                             //pbj.getString("status") digunakan untuk mengambil pesan status dari response
-                            if (obj.getString("status").equals("Success")) {
-                                loadFragment(new viewsMotorAdmin());
-                            }
 
                             //obj.getstring("message") digunakan untuk mengambil pesan message dari response
                             Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                            loadFragment(new viewsMotorAdmin());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -354,7 +361,10 @@ public class TambahEditMotorAdmin extends Fragment {
                 params.put("tahun",tahun);
                 params.put("status",status);
                 params.put("harga", String.valueOf(harga));
-                params.put("imgUrl",imgURL);
+                if(bitmap == null)
+                    params.put("imgURL",imgURL);
+                else
+                    params.put("imgURL", imageToString(bitmap));
 
                 return params;
             }
@@ -377,7 +387,7 @@ public class TambahEditMotorAdmin extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(PUT, MotorAPI.URL_UPDATE+ idMotor, new
+        StringRequest stringRequest = new StringRequest(PUT, MotorAPI.URL_UPDATE+ motor.getIdMotor(), new
                 Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -415,7 +425,10 @@ public class TambahEditMotorAdmin extends Fragment {
                 params.put("tahun",tahun);
                 params.put("status",status);
                 params.put("harga", String.valueOf(harga));
-                params.put("imgUrl",imgURL);
+                if(bitmap == null)
+                    params.put("imgURL",imgURL);
+                else
+                    params.put("imgURL", imageToString(bitmap));
                 return params;
             }
         };

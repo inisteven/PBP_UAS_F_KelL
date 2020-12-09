@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ public class viewsMotorAdmin extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_views_motor_admin, container, false);
 
-        floatingButtonPlus = view.findViewById(R.id.floatingButtonPlus);
+        floatingButtonPlus = (FloatingActionButton) view.findViewById(R.id.floatingButtonPlus);
 
         floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +62,13 @@ public class viewsMotorAdmin extends Fragment {
                 data.putString("status", "tambah");
                 TambahEditMotorAdmin tambahEditMotor = new TambahEditMotorAdmin();
                 tambahEditMotor.setArguments(data);
+                floatingButtonPlus.hide();
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager .beginTransaction()
-                        .replace(R.id.fragment_tambah_edit_motor_admin, tambahEditMotor)
+                        .replace(R.id.frame_view_motor_admin, tambahEditMotor)
                         .commit();
+
 
             }
         });
@@ -94,6 +97,7 @@ public class viewsMotorAdmin extends Fragment {
 
         //biasa
         ListMotor = new ArrayList<Motor>();
+        getMotor();
         recyclerView = view.findViewById(R.id.recycler_view);
         adapter = new MotorAdapterAdmin(view.getContext(), ListMotor, new MotorAdapterAdmin.deleteItemListener() {
             @Override
@@ -104,18 +108,7 @@ public class viewsMotorAdmin extends Fragment {
             }
         });
 
-
-
-        //orientasi
-        RecyclerView.LayoutManager layoutManager = null;
-        int orientation = getResources().getConfiguration().orientation;
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
-            //landsacpe 2 baris
-            layoutManager = new GridLayoutManager(view.getContext(),4);
-        }else if (orientation == Configuration.ORIENTATION_PORTRAIT){
-            //landsacpe 4 baris
-            layoutManager = new GridLayoutManager(view.getContext(),2);
-        }
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

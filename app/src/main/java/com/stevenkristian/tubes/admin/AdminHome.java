@@ -34,13 +34,13 @@ public class AdminHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+
         init();
         setAtribut();
-
     }
     private void init() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        mToogle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mToogle = new ActionBarDrawerToggle(AdminHome.this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToogle);
         mToogle.syncState();
 
@@ -51,45 +51,42 @@ public class AdminHome extends AppCompatActivity {
     }
 
     private void setAtribut() {
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                closeDrawer();
-                switch (id)
-                {
-                    case R.id.motor :
-                        loadFragment(new viewsMotorAdmin());
-                        break;
-                    case R.id.user :
-                        loadFragment(new viewsUserAdmin());
-                        break;
-                    case R.id.riwayatTransaksi :
-                        loadFragment(new viewHistoryAdmin());
-                        break;
-                    case R.id.keluar :
-                        AlertDialog.Builder builder = new AlertDialog.Builder(AdminHome.this);
-                        builder.setMessage("Anda yakin ingin keluar ?");
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        });
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                        break;
-                    default :
-                        return true;
-                }
-                return true;
+        nv.setNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            closeDrawer();
+            switch (id)
+            {
+                case R.id.motor :
+                    loadFragment(new viewsMotorAdmin());
+                    break;
+                case R.id.user :
+                    loadFragment(new viewsUserAdmin());
+                    break;
+                case R.id.riwayatTransaksi :
+                    loadFragment(new viewHistoryAdmin());
+                    break;
+                case R.id.keluar :
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminHome.this);
+                    builder.setMessage("Anda yakin ingin keluar ?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    break;
+                default :
+                    return true;
             }
+            return true;
         });
     }
 

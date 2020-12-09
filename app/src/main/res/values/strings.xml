@@ -26,5 +26,6 @@
     <!--Drawer-->
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="title_activity_home_admin">HomeAdmin</string>
 
 </resources>
