@@ -77,6 +77,7 @@ public class HomeAdmin extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction
                 .replace(R.id.mainFragment,fragment)
+                .addToBackStack(null)
                 .commit();
     }
 }
