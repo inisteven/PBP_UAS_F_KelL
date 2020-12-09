@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#fece2f">
+    android:background="#ffff">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_width="306dp"
+        android:layout_height="371dp"
+        android:layout_marginTop="128dp"
+        android:src="@drawable/motor"
         android:transitionName="logo_image"
-        android:src="@drawable/ic_baseline_motorcycle_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,9 +23,10 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="-50dp"
         android:fontFamily="@font/berkshire_swash"
         android:text="MotoRant"
+        android:textColor="#000000"
         android:textAlignment="center"
         android:transitionName="logo_text"
         android:textSize="40dp"
@@ -39,6 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:textColor="#000000"
         android:fontFamily="@font/alegreya_sc"
         android:text="Motor Rent App You'll Only Need"
         android:textAlignment="center"
