@@ -414,8 +414,6 @@ public class profile extends AppCompatActivity {
                 //respone error
                 progressDialog.dismiss();
                 Toast.makeText(profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                ktp_et.setText(imageToString(bitmap));
-                Toast.makeText(profile.this, imageToString(bitmap), Toast.LENGTH_LONG).show();
             }
         }){
 
@@ -427,7 +425,10 @@ public class profile extends AppCompatActivity {
                 params.put("name",user.getFullname());
                 params.put("phone",user.getPhone());
                 params.put("ktp", user.getKtp());
-                params.put("imgURL",imageToString(bitmap));
+                if(bitmap != null)
+                {
+                    params.put("imgURL",imageToString(bitmap));
+                }
 
                 return params;
             }

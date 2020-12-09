@@ -102,6 +102,7 @@ public class TambahEditMotorAdmin extends Fragment {
         if(!status.equals("tambah"))
         {
             idMotor = motor.getIdMotor();
+            idMotor++;
             txtMerk.setText(motor.getMerk());
             txtWarna.setText(motor.getWarna());
             txtPlat.setText(motor.getPlat());
@@ -391,7 +392,7 @@ public class TambahEditMotorAdmin extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(PUT, MotorAPI.URL_UPDATE+ motor.getIdMotor(), new
+        StringRequest stringRequest = new StringRequest(PUT, MotorAPI.URL_UPDATE+ idMotor, new
                 Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

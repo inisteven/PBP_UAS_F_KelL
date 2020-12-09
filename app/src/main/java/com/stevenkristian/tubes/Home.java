@@ -52,7 +52,6 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         user = loadPreferences();
-        Toast.makeText(this, "Welcome " + user, Toast.LENGTH_LONG).show();
         //get data motor
         ListMotor = new ArrayList<>();
 

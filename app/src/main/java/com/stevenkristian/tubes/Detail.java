@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.stevenkristian.tubes.api.MotorAPI;
 import com.stevenkristian.tubes.model.Motor;
 
 public class Detail extends AppCompatActivity {
@@ -46,8 +48,11 @@ public class Detail extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
 
         //Set to layout
-        Glide.with(getApplicationContext())
-                .load(mtr.imgURL).into(motor_iv);
+        Glide.with(getApplication())
+                .load(MotorAPI.URL_IMAGE + mtr.imgURL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(motor_iv);
         merk_tv.setText(mtr.merk);
         warna_tv.setText(mtr.warna);
         plat_tv.setText(mtr.plat);
