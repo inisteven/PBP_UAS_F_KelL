@@ -10,7 +10,8 @@ public class History implements Serializable {
     public String tglPinjam;
     public String tglKembali;
 
-    public History(String id_User, String id_Motor, String tglPinjam, String tglKembali) {
+    public History(int id, String id_User, String id_Motor, String tglPinjam, String tglKembali) {
+        this.id = id;
         this.id_user = id_User;
         this.id_motor = id_Motor;
         this.tglPinjam = tglPinjam;

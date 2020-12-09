@@ -130,10 +130,10 @@ public class profile extends AppCompatActivity {
                         return true;
                     case R.id.profile:
                         return true;
-//                    case R.id.history:
-//                        startActivity(new Intent(getApplicationContext(),Histor.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.history:
+                        startActivity(new Intent(getApplicationContext(),Histori.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.store:
                         startActivity(new Intent(getApplicationContext(),Store.class));
                         overridePendingTransition(0,0);
