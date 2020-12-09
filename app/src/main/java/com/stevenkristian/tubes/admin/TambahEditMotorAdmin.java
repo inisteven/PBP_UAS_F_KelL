@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,6 +62,8 @@ public class TambahEditMotorAdmin extends Fragment {
     private Motor motor;
     private View view;
     private Bitmap bitmap = null;
+    private Bitmap editBitmap = null;
+    private BitmapDrawable drawable;
     private Uri selectedImage = null;
     private static final int PERMISSION_CODE = 1000;
 
@@ -96,7 +99,7 @@ public class TambahEditMotorAdmin extends Fragment {
         ivGambar    = view.findViewById(R.id.ivGambar);
 
         status = getArguments().getString("status");
-        if(status.equals("edit"))
+        if(!status.equals("tambah"))
         {
             idMotor = motor.getIdMotor();
             txtMerk.setText(motor.getMerk());
@@ -111,6 +114,7 @@ public class TambahEditMotorAdmin extends Fragment {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(ivGambar);
+
         }
     }
 
@@ -182,7 +186,7 @@ public class TambahEditMotorAdmin extends Fragment {
                 String warna = txtWarna.getText().toString();
                 String plat = txtPlat.getText().toString();
                 String tahun = txtTahun.getText().toString();
-                String status = txtStatus.getText().toString();
+                String statusMotor = txtStatus.getText().toString();
                 String imgUrl = "";
 
                 if(bitmap!=null){
@@ -195,12 +199,12 @@ public class TambahEditMotorAdmin extends Fragment {
                     Toast.makeText(getContext(), "Data Tidak Boleh Kosong !", Toast.LENGTH_SHORT).show();
                 else{
                     Double harga     = Double.parseDouble(txtHarga.getText().toString());
-                    motor = new Motor(merk, warna, plat,tahun,status,harga,imgUrl);
+                    motor = new Motor(merk, warna, plat,tahun,statusMotor,harga,imgUrl);
 
                     if(status.equals("tambah"))
-                        tambahMotor(merk, warna, plat,tahun,status,harga,imgUrl);
+                        tambahMotor(merk, warna, plat,tahun,statusMotor,harga,imgUrl);
                     else
-                        editMotor(idMotor,merk, warna, plat,tahun,status,harga,imgUrl);
+                        editMotor(idMotor,merk, warna, plat,tahun,statusMotor,harga,imgUrl);
                 }
             }
         });
@@ -317,7 +321,7 @@ public class TambahEditMotorAdmin extends Fragment {
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("loading.....");
-        progressDialog.setTitle("Menambahkan data buku");
+        progressDialog.setTitle("Menambahkan data Motor");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
@@ -362,7 +366,7 @@ public class TambahEditMotorAdmin extends Fragment {
                 params.put("status",status);
                 params.put("harga", String.valueOf(harga));
                 if(bitmap == null)
-                    params.put("imgURL",imgURL);
+                    params.put("imgURL","-");
                 else
                     params.put("imgURL", imageToString(bitmap));
 
@@ -426,7 +430,13 @@ public class TambahEditMotorAdmin extends Fragment {
                 params.put("status",status);
                 params.put("harga", String.valueOf(harga));
                 if(bitmap == null)
-                    params.put("imgURL",imgURL);
+                {
+                    ivGambar.buildDrawingCache (true);
+                    editBitmap = ivGambar.getDrawingCache (true);
+                    drawable = (BitmapDrawable)ivGambar.getDrawable();
+                    editBitmap = drawable.getBitmap();
+                    params.put("imgURL",imageToString(editBitmap));
+                }
                 else
                     params.put("imgURL", imageToString(bitmap));
                 return params;
