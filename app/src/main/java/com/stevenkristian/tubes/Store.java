@@ -66,10 +66,10 @@ public class Store extends AppCompatActivity implements OnMapReadyCallback {
                         startActivity(new Intent(getApplicationContext(),profile.class));
                         overridePendingTransition(0,0);
                         return true;
-//                    case R.id.history:
-//                        startActivity(new Intent(getApplicationContext(),Histor.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.history:
+                        startActivity(new Intent(getApplicationContext(),Histori.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.store:
                         return true;
                 }
