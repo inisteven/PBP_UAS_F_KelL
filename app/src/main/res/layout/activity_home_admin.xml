@@ -18,9 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:orientation="vertical"
-
-            android:clipToOutline="true">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
