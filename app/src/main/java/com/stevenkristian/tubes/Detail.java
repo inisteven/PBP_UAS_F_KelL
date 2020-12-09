@@ -58,7 +58,7 @@ public class Detail extends AppCompatActivity {
         pilih.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mtr.getStatus().equalsIgnoreCase("Tersedia")){
+                if(mtr.getStatus().equalsIgnoreCase("Ada")){
                     Intent intent = new Intent(Detail.this, booking.class);
                     Gson gson = new Gson();
                     String strMtr = gson.toJson(mtr);
