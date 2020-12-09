@@ -136,6 +136,7 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
                                         clearTxt();
                                         startActivity(new Intent(Login.this, Home.class));
+
                                     } else {
                                         Toast.makeText(Login.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
                                     }
