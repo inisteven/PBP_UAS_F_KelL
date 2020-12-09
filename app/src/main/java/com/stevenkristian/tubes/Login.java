@@ -118,6 +118,7 @@ public class Login extends AppCompatActivity {
             //getUser(email, password);
             if(email.equalsIgnoreCase("admin@admin.com") && password.equalsIgnoreCase("admin"))
             {
+                clearTxt();
                 startActivity(new Intent(Login.this, HomeAdmin.class));
             }
             else {
@@ -132,6 +133,7 @@ public class Login extends AppCompatActivity {
                                     if (mAuth.getCurrentUser().isEmailVerified()) {
                                         savePreferences();
                                         Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
+                                        clearTxt();
                                         startActivity(new Intent(Login.this, Home.class));
                                     } else {
                                         Toast.makeText(Login.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
@@ -143,6 +145,10 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    private void clearTxt(){
+        username_et.setText("");
+        password_et.setText("");
+    }
 
 
     private void savePreferences(){

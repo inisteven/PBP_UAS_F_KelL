@@ -33,9 +33,9 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriV
 
 
 
-    public HistoriAdapter(Context context, List<History> motor){
+    public HistoriAdapter(Context context, List<History> list){
         this.context = context;
-        this.list = motor;
+        this.list = list;
         notifyDataSetChanged();
     }
 
@@ -53,7 +53,8 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriV
         History histori = list.get(position);
 
         int index = position+1;
-        holder.judul.setText("HST-"+ index);
+        String txt = "HST"+index;
+        holder.judul.setText(txt);
         holder.user.setText(histori.getId_User());
         holder.motor.setText(histori.getId_Motor());
         holder.tglPinjam.setText(histori.getTglPinjam());
