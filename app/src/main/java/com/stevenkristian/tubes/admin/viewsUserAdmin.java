@@ -95,23 +95,23 @@ public class viewsUserAdmin extends Fragment {
 
         floatingButtonPlus = (FloatingActionButton) view.findViewById(R.id.floatingButtonPlus);
 
-//        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Bundle data = new Bundle();
-//                data.putString("status", "tambah");
-//                TambahEditUserAdmin tambahEditUser = new TambahEditUserAdmin();
-//                tambahEditUser.setArguments(data);
-//                floatingButtonPlus.hide();
-//
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                fragmentManager .beginTransaction()
-//                        .replace(R.id.frame_view_user_admin, tambahEditUser)
-//                        .commit();
-//
-//
-//            }
-//        });
+        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle data = new Bundle();
+                data.putString("status", "tambah");
+                TambahEditUserAdmin tambahEditUser = new TambahEditUserAdmin();
+                tambahEditUser.setArguments(data);
+                floatingButtonPlus.hide();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager .beginTransaction()
+                        .replace(R.id.frame_view_user_admin, tambahEditUser)
+                        .commit();
+
+
+            }
+        });
 
         loadDaftarUser();
 
