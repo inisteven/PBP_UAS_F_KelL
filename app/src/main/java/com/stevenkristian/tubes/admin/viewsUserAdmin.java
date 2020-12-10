@@ -94,36 +94,8 @@ public class viewsUserAdmin extends Fragment {
         view = inflater.inflate(R.layout.fragment_views_user_admin, container, false);
 
         floatingButtonPlus = (FloatingActionButton) view.findViewById(R.id.floatingButtonPlus);
+        btnCetak = view.findViewById(R.id.btnCetak);
 
-        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle data = new Bundle();
-                data.putString("status", "tambah");
-                TambahEditUserAdmin tambahEditUser = new TambahEditUserAdmin();
-                tambahEditUser.setArguments(data);
-                floatingButtonPlus.hide();
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager .beginTransaction()
-                        .replace(R.id.frame_view_user_admin, tambahEditUser)
-                        .commit();
-
-
-            }
-        });
-
-        loadDaftarUser();
-
-        btnBack = view.findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
-
-        btnCetak=view.findViewById(R.id.btnCetak);
         btnCetak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +130,35 @@ public class viewsUserAdmin extends Fragment {
                 alert.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(Color.WHITE);
             }
         });
+        floatingButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle data = new Bundle();
+                data.putString("status", "tambah");
+                TambahEditUserAdmin tambahEditUser = new TambahEditUserAdmin();
+                tambahEditUser.setArguments(data);
+                floatingButtonPlus.hide();
+                btnCetak.setVisibility(View.GONE);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager .beginTransaction()
+                        .replace(R.id.frame_view_user_admin, tambahEditUser)
+                        .commit();
+
+
+            }
+        });
+
+        loadDaftarUser();
+
+        btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
 
 
         return view;
