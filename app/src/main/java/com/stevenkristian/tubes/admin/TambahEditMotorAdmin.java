@@ -100,10 +100,9 @@ public class TambahEditMotorAdmin extends Fragment {
         ivGambar    = view.findViewById(R.id.ivGambar);
 
         status = getArguments().getString("status");
-        if(!status.equals("tambah"))
+        if(status.equals("edit"))
         {
             idMotor = motor.getIdMotor();
-            idMotor++;
             txtMerk.setText(motor.getMerk());
             txtWarna.setText(motor.getWarna());
             txtPlat.setText(motor.getPlat());

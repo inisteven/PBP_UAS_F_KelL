@@ -45,6 +45,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
     private List<Motor> motorList;
     private List<Motor> motorListFiltered;
     private Context context;
+    private int idMotor;
     private View view;
     private MotorAdapterAdmin.deleteItemListener mListener;
 
@@ -106,7 +107,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteMotor(motor.getPlat());
+                        deleteMotor(motor.getIdMotor());
 
                     }
                 });
@@ -177,7 +178,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
     }
 
     //Fungsi menghapus data mahasiswa
-    public void deleteMotor(String merk){
+    public void deleteMotor(int IdMotor){
         //Pendeklarasian queue
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -189,7 +190,7 @@ public class MotorAdapterAdmin extends RecyclerView.Adapter<MotorAdapterAdmin.ad
         progressDialog.show();
 
         //Memulai membuat permintaan request menghapus data ke jaringan
-        StringRequest stringRequest = new StringRequest(DELETE, MotorAPI.URL_DELETE + merk, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(DELETE, MotorAPI.URL_DELETE + IdMotor, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Disini bagian jika response jaringan berhasil tidak terdapat ganguan/error
