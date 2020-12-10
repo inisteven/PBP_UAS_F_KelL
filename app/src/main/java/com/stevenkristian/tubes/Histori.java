@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class Histori extends AppCompatActivity {
     private SharedPreferences preferences;
     private List<History> list;
     public static final int mode = Activity.MODE_PRIVATE;
-    String id_user=null;
+    String id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class Histori extends AppCompatActivity {
 
         getUser();
         list = new ArrayList<>();
-        getHistory();
+
         recyclerView = findViewById(R.id.recycler_view_history);
         adapter = new HistoriAdapter(Histori.this, list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -100,37 +101,39 @@ public class Histori extends AppCompatActivity {
         progressDialog.setTitle("Menampilkan data history transaksi");
         progressDialog.setProgressStyle(android.app.ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-
-        final JsonObjectRequest stringRequest = new JsonObjectRequest(GET, HistoryAPI.URL_SEARCH+id_user
-                , null, new Response.Listener<JSONObject>() {
+        Log.i("QUDA", "ID USER:: " + id_user);
+        final JsonObjectRequest stringRequest = new JsonObjectRequest(GET, HistoryAPI.URL_SEARCH+id_user,
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Toast.makeText(getApplicationContext(), ""+ HistoryAPI.URL_SEARCH+id_user, Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
                 try {
-                    //Mengambil data response json object yang berupa data motor
-                    JSONArray jsonArray = response.getJSONArray("data");
-
+                    JSONArray jsonArray = response.getJSONArray("hist");
+                    Log.i("QUDA", "Array :: " + jsonArray);
                     if(!list.isEmpty())
                         list.clear();
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         //Mengubah data jsonArray tertentu menjadi json Object
-                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                        JSONObject jsonObject   = (JSONObject) jsonArray.get(i);
+                        Log.i("QUDA", "json onResponse: " + jsonObject.toString());
 
-                        int id               = jsonObject.optInt("id");
-                        String id_user             = jsonObject.optString("id_user");
-                        String id_motor            = jsonObject.optString("id_motor");
-                        String tglPinjam                = jsonObject.optString("tglPinjam");
-                        String tglKembali               = jsonObject.optString("tglKembali");
+                        int id                  = jsonObject.optInt("id");
+                        String id_user          = jsonObject.optString("id_user");
+                        String id_motor         = jsonObject.optString("id_motor");
+                        String tglPinjam        = jsonObject.optString("tglPinjam");
+                        String tglKembali       = jsonObject.optString("tglKembali");
 
                         //Membuat objek user
                         History history = new History(id,id_user,id_motor,tglPinjam,tglKembali);
                         //Menambahkan objek user tadi ke list user
                         list.add(history);
-                        Toast.makeText(Histori.this, list.get(0).getId(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Histori.this, list.get(0).getId(), Toast.LENGTH_SHORT).show();
                     }
                     adapter.notifyDataSetChanged();
                 }catch (JSONException e){
+                    Log.i("QUDA", "MASUK CATCH");
                     e.printStackTrace();
                 }
                 Toast.makeText(getApplication(), response.optString("message"),
@@ -164,6 +167,7 @@ public class Histori extends AppCompatActivity {
                     int id               = jsonArray.optInt("id");
 
                     id_user = String.valueOf(id);
+                    getHistory();
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
                 }
