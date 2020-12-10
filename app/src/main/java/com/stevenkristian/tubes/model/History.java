@@ -22,6 +22,10 @@ public class History implements Serializable {
 
     public void setId(int id) { this.id = id; }
 
+    public String getStringId(){
+        return String.valueOf(id);
+    }
+
     public String getId_User() { return id_user; }
 
     public void setId_User(String id_User) { this.id_user = id_User; }

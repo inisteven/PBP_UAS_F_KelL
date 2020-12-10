@@ -29,6 +29,7 @@ import java.util.List;
 
 public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriViewHolder>{
     private Context context;
+    private View view;
     private List<History> list = new ArrayList<>();
 
 
@@ -43,9 +44,10 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriV
     @Override
     public HistoriViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_history, parent, false);
 
-        return new HistoriViewHolder(view);
+        view = layoutInflater.inflate(R.layout.item_history, parent, false);
+
+        return new HistoriAdapter.HistoriViewHolder(view);
     }
 
     @Override
@@ -79,4 +81,6 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriV
         }
 
     }
+
+
 }
