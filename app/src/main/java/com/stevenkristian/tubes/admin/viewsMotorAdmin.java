@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -47,6 +48,7 @@ public class viewsMotorAdmin extends Fragment {
     private List<Motor> ListMotor;
     private View view;
     private FloatingActionButton floatingButtonPlus;
+    private ImageButton btnBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +72,14 @@ public class viewsMotorAdmin extends Fragment {
                         .commit();
 
 
+            }
+        });
+
+        btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
