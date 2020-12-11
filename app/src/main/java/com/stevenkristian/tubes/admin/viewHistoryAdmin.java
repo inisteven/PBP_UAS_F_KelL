@@ -239,7 +239,7 @@ public class viewHistoryAdmin extends Fragment {
 
     private void createPdf() throws FileNotFoundException, DocumentException {
         //isikan code createPdf()
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Download/");
+        File docsFolder = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath());
         if (!docsFolder.exists())
         { docsFolder.mkdir();
             Log.i(TAG, "Direktori baru untuk file pdf berhasil dibuat");
