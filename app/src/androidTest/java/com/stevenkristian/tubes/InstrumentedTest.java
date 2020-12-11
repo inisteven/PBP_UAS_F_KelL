@@ -81,7 +81,7 @@ public class InstrumentedTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(7000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -95,11 +95,17 @@ public class InstrumentedTest {
                                 0)));
         cardView.perform(scrollTo(), click());
 
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         ViewInteraction cardView2 = onView(
                 allOf(withId(R.id.cardMotor),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.frame_view_motor_admin),
+                                        withId(R.id.layout_motor),
                                         0),
                         0)));
         cardView2.perform(swipeLeft());
@@ -128,7 +134,7 @@ public class InstrumentedTest {
                 allOf(withId(R.id.cardMotor),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.frame_view_motor_admin),
+                                        withId(R.id.layout_motor),
                                         0),
                                 0)));
         cardView3.perform(swipeLeft());
