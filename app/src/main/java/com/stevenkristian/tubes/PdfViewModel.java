@@ -11,6 +11,7 @@ public class PdfViewModel extends ViewModel {
     public PdfViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is pdf fragment");
+
     }
 
     public LiveData<String> getText() {
